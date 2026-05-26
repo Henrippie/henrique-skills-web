@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pacote Coaching & Transformação · Henrique Skills</title>
+  <meta name="description" content="Frameworks de sessão, diagnóstico de cliente, plano de transformação e acompanhamento de resultados." />
+  <meta property="og:title" content="Pacote Coaching & Transformação" />
+  <meta property="og:description" content="Frameworks de sessão, diagnóstico de cliente, plano de transformação e acompanhamento de resultados." />
+  <meta name="twitter:card" content="summary" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #050505; --bg-card: #0d0d0d; --bg-card-hover: #111111;
+      --border: #1a1a1a; --border-hover: #252525;
+      --text: #e8e8e8; --text-muted: #555; --text-dim: #333;
+      --accent: #f59e0b; --accent-light: #f59e0b; --accent-glow: rgba(124,58,237,0.12);
+      --green: #22c55e; --mono: 'SF Mono','Cascadia Code','Fira Code',monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; text-decoration:none; }
+    nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 40px; height:56px; background:rgba(5,5,5,0.85); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+    .nav-logo { font-size:13px; font-weight:600; }
+    .nav-logo .slash { color:var(--text-muted); font-weight:300; }
+    .nav-logo .tag { color:var(--text-muted); font-weight:400; }
+    .nav-links { display:flex; align-items:center; gap:32px; list-style:none; }
+    .nav-links a { font-size:13px; color:var(--text-muted); transition:color .15s; }
+    .nav-links a:hover { color:var(--text); }
+    .nav-cta { background:var(--text); color:var(--bg) !important; padding:7px 16px; border-radius:6px; font-size:13px; font-weight:500; transition:opacity .15s; }
+    .nav-cta:hover { opacity:.85; }
+    .hero { padding:120px 40px 60px; max-width:900px; margin:0 auto; }
+    .hero-badge { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-family:var(--mono); color:var(--text-muted); letter-spacing:.08em; text-transform:uppercase; margin-bottom:24px; }
+    .hero-badge .dot { width:5px; height:5px; background:var(--accent); border-radius:50%; animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)} }
+    h1 { font-size:clamp(28px,4vw,48px); font-weight:700; line-height:1.1; letter-spacing:-.02em; margin-bottom:16px; }
+    .hero-sub { font-size:16px; color:var(--text-muted); max-width:560px; line-height:1.7; margin-bottom:36px; }
+    .hero-meta { display:flex; gap:32px; margin-bottom:48px; }
+    .hero-meta-item { display:flex; flex-direction:column; gap:2px; }
+    .hero-meta-value { font-size:28px; font-weight:700; font-family:var(--mono); color:var(--accent); }
+    .hero-meta-label { font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--text-dim); }
+    .cta-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    .btn-primary { background:var(--accent); color:#fff; padding:10px 20px; border-radius:7px; font-size:13px; font-weight:600; transition:opacity .15s; }
+    .btn-primary:hover { opacity:.85; }
+    .btn-ghost { border:1px solid var(--border); color:var(--text-muted); padding:10px 20px; border-radius:7px; font-size:13px; transition:all .15s; }
+    .btn-ghost:hover { border-color:var(--border-hover); color:var(--text); }
+    .section { padding:0 40px 80px; max-width:1000px; margin:0 auto; }
+    .section-label { font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:32px; }
+    .install-preview { background:#080808; border:1px solid var(--border); border-radius:10px; padding:20px 24px; font-family:var(--mono); font-size:13px; color:#a8a8a8; line-height:1.8; position:relative; max-width:520px; margin-bottom:48px; }
+    .install-preview .cmt { color:var(--text-dim); }
+    .install-preview .cmd { color:#e8e8e8; }
+    .install-preview .arg { color:var(--accent); }
+    .copy-btn { position:absolute; top:10px; right:10px; background:var(--border); border:1px solid #222; border-radius:5px; padding:4px 9px; font-family:var(--mono); font-size:11px; color:var(--text-muted); cursor:pointer; transition:all .15s; }
+    .copy-btn:hover { background:#222; color:var(--text); }
+    .copy-btn.copied { color:var(--green); }
+    .about-section { padding:60px 40px; max-width:900px; margin:0 auto; border-top:1px solid var(--border); }
+    .about-grid { display:grid; grid-template-columns:auto 1fr; gap:28px; align-items:start; }
+    .about-avatar { width:64px; height:64px; border-radius:10px; overflow:hidden; border:1px solid var(--border); flex-shrink:0; }
+    .about-avatar img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+    .about-content h2 { font-size:20px; font-weight:600; margin-bottom:10px; }
+    .about-content p { font-size:14px; color:var(--text-muted); line-height:1.7; margin-bottom:12px; max-width:520px; }
+    .about-link { display:inline-flex; align-items:center; gap:6px; font-size:13px; color:var(--accent); font-family:var(--mono); }
+    .phases-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:10px; overflow:hidden; margin-bottom:60px; }
+    .phase-card { background:var(--bg-card); padding:20px; }
+    .phase-num { font-family:var(--mono); font-size:10px; color:var(--text-dim); letter-spacing:.1em; margin-bottom:8px; }
+    .phase-title { font-size:13px; font-weight:600; margin-bottom:6px; color:var(--accent); }
+    .phase-desc { font-size:12px; color:var(--text-muted); line-height:1.5; }
+    .skills-grid { display:flex; flex-direction:column; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+    .skill-row { background:var(--bg-card); padding:20px 24px; display:grid; grid-template-columns:80px 1fr; gap:16px; align-items:start; transition:background .15s; }
+    .skill-row:hover { background:var(--bg-card-hover); }
+    .skill-tier { font-size:9px; font-family:var(--mono); letter-spacing:.1em; text-transform:uppercase; padding:3px 7px; border-radius:4px; text-align:center; }
+    .tier-essencial { color:#60a5fa; background:rgba(96,165,250,.08); border:1px solid rgba(96,165,250,.15); }
+    .tier-top { color:#f59e0b; background:rgba(245,158,11,.08); border:1px solid rgba(245,158,11,.15); }
+    .tier-recomendada { color:var(--green); background:rgba(34,197,94,.08); border:1px solid rgba(34,197,94,.15); }
+    .tier-complementar { color:var(--text-muted); background:rgba(85,85,85,.08); border:1px solid rgba(85,85,85,.2); }
+    .skill-info-name { font-size:14px; font-weight:600; margin-bottom:4px; }
+    .skill-info-slug { font-family:var(--mono); font-size:11px; color:var(--text-dim); margin-bottom:6px; }
+    .skill-info-desc { font-size:12px; color:var(--text-muted); line-height:1.5; }
+    .copy-install-btn { font-size:11px; font-family:var(--mono); color:var(--accent); cursor:pointer; background:none; border:none; padding:0; margin-top:6px; }
+    .copy-install-btn:hover { text-decoration:underline; }
+    .install-cta { padding:60px 40px; max-width:900px; margin:0 auto; border-top:1px solid var(--border); }
+    .install-cta-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:32px; }
+    .install-cta h2 { font-size:20px; font-weight:600; margin-bottom:8px; }
+    .install-cta p { font-size:13px; color:var(--text-muted); margin-bottom:20px; }
+    .install-block { background:#080808; border:1px solid var(--border); border-radius:8px; padding:16px 20px; font-family:var(--mono); font-size:13px; color:#a8a8a8; position:relative; }
+    footer { border-top:1px solid var(--border); padding:28px 40px; display:flex; align-items:center; justify-content:space-between; max-width:1000px; margin:0 auto; }
+    .footer-left { display:flex; align-items:center; gap:10px; }
+    .footer-avatar { width:26px; height:26px; border-radius:6px; overflow:hidden; border:1px solid var(--border); }
+    .footer-avatar img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+    .footer-name { font-size:13px; font-weight:500; }
+    .footer-tag { font-size:11px; color:var(--text-muted); }
+    .footer-right { font-size:12px; color:var(--text-dim); }
+    @media(max-width:640px){
+      nav{padding:0 20px} .nav-links{display:none}
+      .hero{padding:90px 20px 40px} h1{font-size:26px}
+      .section{padding:0 20px 60px}
+      .about-section,.install-cta{padding:40px 20px}
+      footer{padding:20px; flex-direction:column; gap:12px}
+      .hero-meta{gap:20px}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Henrique Skills<span class="slash">//</span><span class="tag">curadoria editorial</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#sobre">Sobre</a></li>
+    <li><a href="index.html#skills">Pacotes</a></li>
+    <li><a href="#instalar" class="nav-cta">Instalar</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge"><span class="dot"></span>✦ Pacote 11 · Henrique Skills · piloto</div>
+  <h1>Estruture sua prática de coaching com metodologia, sessões e resultados mensuráveis.</h1>
+  <p class="hero-sub">Frameworks de sessão, diagnóstico de cliente, plano de transformação e acompanhamento de resultados.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-value">09</span><span class="hero-meta-label">Skills</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-value">04</span><span class="hero-meta-label">Frameworks</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-value">01</span><span class="hero-meta-label">Stack</span></div>
+  </div>
+  <div class="cta-row">
+    <a href="#instalar" class="btn-primary">Começar pelo Coaching & Transformação →</a>
+    <a href="#skills" class="btn-ghost">Ver as skills</a>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-label">// pré-visualização do install</p>
+  <div class="install-preview">
+    <button class="copy-btn" onclick="copyInstall(this)">copiar</button>
+    <span class="cmt"># Buscar skills do pacote</span><br/>
+    <span class="cmd">npx henrique-skills find</span> <span class="arg">coaching-transformacao</span><br/><br/>
+    <span class="cmt"># Instalar pacote completo</span><br/>
+    <span class="cmd">npx henrique-skills install</span> <span class="arg">coaching-transformacao</span><br/><br/>
+    <span class="cmt"># Atualizar</span><br/>
+    <span class="cmd">npx henrique-skills update</span>
+  </div>
+</section>
+
+<section class="about-section">
+  <p class="section-label">✦ Por trás da curadoria</p>
+  <div class="about-grid">
+    <div class="about-avatar"><img src="assets/henrique-perfil.png" alt="Henrique Santos" /></div>
+    <div class="about-content">
+      <h2>Sobre o Henrique</h2>
+      <p>Especialista em marketing digital, vendas e automação com IA. Cada pacote é o resultado de aplicação real no mercado — criado pra resolver problemas específicos que escalam com tecnologia e método.</p>
+      <a href="https://instagram.com/souhenriquesantos" target="_blank" class="about-link">@souhenriquesantos →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <p class="section-label">// jornada de uso recomendada</p>
+  <div class="phases-grid">
+    <div class="phase-card">
+      <div class="phase-num">Fase 1</div>
+      <div class="phase-title">Diagnóstico</div>
+      <div class="phase-desc">Mapear situação atual, objetivo e bloqueios do cliente com precision.</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">Fase 2</div>
+      <div class="phase-title">Plano</div>
+      <div class="phase-desc">Criar plano de transformação com marcos, métricas e prazo realista.</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">Fase 3</div>
+      <div class="phase-title">Sessões</div>
+      <div class="phase-desc">Conduzir sessões estruturadas com perguntas poderosas e ferramentas práticas.</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">Fase 4</div>
+      <div class="phase-title">Acompanhamento</div>
+      <div class="phase-desc">Monitorar progresso, ajustar plano e manter accountability.</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">Fase 5</div>
+      <div class="phase-title">Resultado</div>
+      <div class="phase-desc">Documentar transformação, coletar depoimento e preparar próxima jornada.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <p class="section-label">// pacote 11</p>
+  <h2 style="font-size:20px;font-weight:600;margin-bottom:6px">Coaching & Transformação</h2>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px">Frameworks de sessão, diagnóstico de cliente, plano de transformação e acompanhamento de resultados.</p>
+  <div class="skills-grid">
+    <div class="skill-row">
+      <div><span class="skill-tier tier-essencial">Essencial</span></div>
+      <div>
+        <div class="skill-info-name">Diagnóstico Profundo de Cliente</div>
+        <div class="skill-info-slug">coaching-diagnostico</div>
+        <div class="skill-info-desc">Conduz diagnóstico completo com 15 perguntas poderosas para mapear situação atual, objetivo e gap de transformação.</div>
+        <button class="copy-install-btn" onclick="copySkillInstall(this, 'coaching-diagnostico')">Copiar install</button>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div><span class="skill-tier tier-essencial">Essencial</span></div>
+      <div>
+        <div class="skill-info-name">Facilitador de Sessão de Coaching</div>
+        <div class="skill-info-slug">coaching-sessao</div>
+        <div class="skill-info-desc">Estrutura sessão de 60-90 min com check-in, objetivo, exploração, insight e plano de ação concreto.</div>
+        <button class="copy-install-btn" onclick="copySkillInstall(this, 'coaching-sessao')">Copiar install</button>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div><span class="skill-tier tier-top">Top</span></div>
+      <div>
+        <div class="skill-info-name">Criador de Plano de Transformação</div>
+        <div class="skill-info-slug">coaching-plano</div>
+        <div class="skill-info-desc">Monta plano de 90 dias com marcos semanais, indicadores de progresso e ações específicas para cada fase.</div>
+        <button class="copy-install-btn" onclick="copySkillInstall(this, 'coaching-plano')">Copiar install</button>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div><span class="skill-tier tier-recomendada">Recomendada</span></div>
+      <div>
+        <div class="skill-info-name">Gerador de Perguntas Poderosas</div>
+        <div class="skill-info-slug">coaching-perguntas</div>
+        <div class="skill-info-desc">Cria banco de 50+ perguntas categorizadas por objetivo: clareza, motivação, crenças, estratégia e ação.</div>
+        <button class="copy-install-btn" onclick="copySkillInstall(this, 'coaching-perguntas')">Copiar install</button>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div><span class="skill-tier tier-complementar">Complementar</span></div>
+      <div>
+        <div class="skill-info-name">Analista de Progresso do Coachee</div>
+        <div class="skill-info-slug">coaching-progresso</div>
+        <div class="skill-info-desc">Avalia evolução do cliente com base em marcos e sugere ajustes de rota para maximizar resultado.</div>
+        <button class="copy-install-btn" onclick="copySkillInstall(this, 'coaching-progresso')">Copiar install</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="install-cta" id="instalar">
+  <p class="section-label">✦ Instalar pacote completo</p>
+  <div class="install-cta-card">
+    <h2>Instale o stack completo</h2>
+    <p>Um comando · todas as skills · pronto pra usar.</p>
+    <div class="install-block">
+      <span style="color:var(--text-dim)"># pacote completo</span><br/>
+      <span style="color:#e8e8e8">npx henrique-skills install</span> <span style="color:var(--accent)">coaching-transformacao</span>
+    </div>
+    <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">
+      <a href="https://github.com/souhenriquesantos/henrique-skills" target="_blank" class="btn-ghost" style="font-size:13px">Ver no GitHub</a>
+      <a href="https://docs.claude.com" target="_blank" class="btn-ghost" style="font-size:13px">Docs Claude Code</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">
+    <div class="footer-avatar"><img src="assets/henrique-perfil.png" alt="Henrique" /></div>
+    <div>
+      <div class="footer-name">Henrique Skills</div>
+      <div class="footer-tag">Curadoria editorial de skills Claude · 2026</div>
+    </div>
+  </div>
+  <div class="footer-right">Built with <a href="https://claude.com/code" style="color:#f59e0b">Claude Code</a></div>
+</footer>
+
+<script>
+function copyInstall(btn) {
+  const text = `npx henrique-skills install coaching-transformacao`;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'copiado!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'copiar'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+function copySkillInstall(btn, slug) {
+  navigator.clipboard.writeText(`npx henrique-skills add ${slug}`).then(() => {
+    btn.textContent = 'copiado!';
+    setTimeout(() => { btn.textContent = 'Copiar install'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>

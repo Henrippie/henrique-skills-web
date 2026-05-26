@@ -3,30 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Henrique Skills · 6 pacotes de skills Claude</title>
-  <meta name="description" content="Marketplace editorial de skills Claude curados por nicho. Marketing, SDR, Infoprodutos, WhatsApp IA e muito mais." />
-  <meta property="og:title" content="Henrique Skills · 6 pacotes de skills Claude" />
+  <title>Henrique Skills · 14 pacotes de skills Claude</title>
+  <meta name="description" content="Marketplace editorial de skills Claude curados por nicho. Marketing, SDR, Produto de Ativação, WhatsApp IA, Copywriting, Mentorias e muito mais." />
+  <meta property="og:title" content="Henrique Skills · 14 pacotes de skills Claude" />
   <meta property="og:description" content="Skills certas pra fazer o trabalho. Sem ruído." />
   <meta property="og:locale" content="pt_BR" />
-  <meta property="og:site_name" content="Henrique Skills" />
-  <meta name="twitter:card" content="summary" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg: #050505;
-      --bg-card: #0d0d0d;
-      --bg-card-hover: #111111;
-      --border: #1a1a1a;
-      --border-hover: #252525;
-      --text: #e8e8e8;
-      --text-muted: #555;
-      --text-dim: #333;
+      --bg: #030303;
+      --bg-card: #0a0a0a;
+      --bg-card-hover: #0f0f0f;
+      --border: #161616;
+      --border-hover: #242424;
+      --text: #efefef;
+      --text-muted: #4a4a4a;
+      --text-dim: #2a2a2a;
       --accent: #7c3aed;
+      --accent-2: #6366f1;
       --accent-light: #a78bfa;
-      --accent-glow: rgba(124,58,237,0.12);
-      --green: #22c55e;
-      --mono: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+      --accent-glow: rgba(124,58,237,0.15);
+      --green: #10b981;
+      --yellow: #f59e0b;
+      --blue: #3b82f6;
+      --red: #ef4444;
+      --pink: #ec4899;
+      --mono: 'SF Mono','Cascadia Code','Fira Code',ui-monospace,monospace;
     }
 
     html { scroll-behavior: smooth; }
@@ -34,288 +37,463 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
       font-size: 15px;
-      line-height: 1.6;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     a { color: inherit; text-decoration: none; }
 
-    /* ─── NAV ─── */
+    /* ═══ GRAIN OVERLAY ═══ */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    /* ═══ NAV ═══ */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 200;
+      height: 56px;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 40px;
-      height: 56px;
-      background: rgba(5,5,5,0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(3,3,3,0.8);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
       border-bottom: 1px solid var(--border);
     }
 
     .nav-logo {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      display: flex; align-items: center; gap: 8px;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 600;
     }
 
-    .nav-logo .slash {
-      color: var(--text-muted);
-      font-weight: 300;
+    .nav-logo-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 8px var(--accent-glow);
+      animation: glow-pulse 3s ease infinite;
     }
 
-    .nav-logo .tag {
-      color: var(--text-muted);
-      font-weight: 400;
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 8px rgba(124,58,237,0.4); }
+      50% { box-shadow: 0 0 16px rgba(124,58,237,0.8); }
     }
+
+    .nav-tag { color: var(--text-muted); font-weight: 400; }
+
+    .nav-right { display: flex; align-items: center; gap: 24px; }
 
     .nav-links {
-      display: flex; align-items: center; gap: 32px;
-      list-style: none;
+      display: flex; gap: 28px; list-style: none;
     }
 
     .nav-links a {
-      font-size: 13px;
-      color: var(--text-muted);
-      transition: color .15s;
+      font-size: 12.5px; color: var(--text-muted);
+      transition: color .2s;
     }
 
     .nav-links a:hover { color: var(--text); }
 
     .nav-cta {
-      background: var(--text);
-      color: var(--bg) !important;
-      padding: 7px 16px;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 500;
-      transition: opacity .15s;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff !important;
+      padding: 7px 18px;
+      border-radius: 7px;
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: opacity .2s, transform .2s;
+      box-shadow: 0 0 20px rgba(124,58,237,0.3);
     }
 
-    .nav-cta:hover { opacity: .85; }
+    .nav-cta:hover { opacity: .9; transform: translateY(-1px); }
 
-    /* ─── HERO ─── */
+    /* ═══ HERO ═══ */
     .hero {
-      padding: 140px 40px 80px;
-      max-width: 900px;
+      position: relative;
+      padding: 140px 40px 90px;
+      max-width: 920px;
       margin: 0 auto;
     }
 
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 11px;
-      font-family: var(--mono);
-      color: var(--text-muted);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin-bottom: 32px;
+    /* Radial glow background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 80px; left: -100px;
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(124,58,237,0.08) 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    .hero-badge .dot {
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow-dot {
       width: 5px; height: 5px;
-      background: var(--accent);
       border-radius: 50%;
+      background: var(--accent);
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: .4; transform: scale(.8); }
+      50% { opacity: .4; transform: scale(.75); }
     }
 
-    h1 {
-      font-size: clamp(32px, 5vw, 56px);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -.02em;
-      color: var(--text);
+    .hero h1 {
+      font-size: clamp(36px, 5.5vw, 64px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -.03em;
       margin-bottom: 20px;
+    }
+
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, #fff 0%, var(--accent-light) 50%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .hero-sub {
       font-size: 17px;
       color: var(--text-muted);
-      max-width: 560px;
-      line-height: 1.7;
+      max-width: 540px;
+      line-height: 1.75;
       margin-bottom: 48px;
     }
 
-    /* ─── PACOTES GRID ─── */
-    .section { padding: 0 40px 80px; max-width: 1100px; margin: 0 auto; }
-
-    .packages-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
+    .hero-ctas {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      margin-bottom: 56px;
     }
 
-    .package-card {
-      background: var(--bg-card);
-      padding: 28px 28px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      transition: background .15s;
-      cursor: default;
-      position: relative;
-    }
-
-    .package-card:hover {
-      background: var(--bg-card-hover);
-    }
-
-    .package-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-    }
-
-    .package-num {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--text-dim);
-      letter-spacing: .1em;
-    }
-
-    .package-badge {
-      font-size: 9px;
-      font-family: var(--mono);
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--green);
-      background: rgba(34,197,94,.08);
-      border: 1px solid rgba(34,197,94,.15);
-      padding: 3px 7px;
-      border-radius: 4px;
-    }
-
-    .package-title {
-      font-size: 15px;
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
       font-weight: 600;
-      color: var(--text);
-      line-height: 1.3;
+      transition: all .2s;
+      box-shadow: 0 4px 24px rgba(124,58,237,0.25);
     }
 
-    .package-desc {
-      font-size: 13px;
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(124,58,237,0.35);
+    }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center;
+      border: 1px solid var(--border-hover);
       color: var(--text-muted);
-      line-height: 1.6;
-      flex: 1;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all .2s;
     }
 
-    .package-meta {
-      display: flex;
-      gap: 16px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-    }
-
-    .meta-item {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .meta-value {
-      font-size: 18px;
-      font-weight: 700;
+    .btn-ghost:hover {
+      border-color: #333;
       color: var(--text);
-      font-family: var(--mono);
     }
 
-    .meta-label {
-      font-size: 10px;
+    .hero-stats {
+      display: flex; gap: 40px;
+    }
+
+    .hero-stat { display: flex; flex-direction: column; gap: 2px; }
+
+    .hero-stat-value {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      background: linear-gradient(135deg, var(--text) 0%, #888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-stat-label {
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--text-dim);
+      letter-spacing: .1em;
+      color: var(--text-muted);
     }
 
-    .package-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: var(--accent-light);
-      margin-top: 4px;
-      font-family: var(--mono);
-      transition: gap .15s;
-    }
-
-    .package-link:hover { gap: 10px; }
-
-    /* ─── ABOUT ─── */
-    .about-section {
-      padding: 80px 40px;
-      max-width: 900px;
+    /* ═══ PACKAGES ═══ */
+    .packages-section {
+      padding: 0 40px 100px;
+      max-width: 1140px;
       margin: 0 auto;
-      border-top: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex; align-items: baseline; gap: 12px;
+      margin-bottom: 28px;
     }
 
     .section-label {
       font-family: var(--mono);
       font-size: 10px;
-      letter-spacing: .12em;
+      letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--text-dim);
-      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .pkg-card {
+      background: var(--bg-card);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: background .2s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pkg-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--pkg-color, transparent);
+      opacity: 0;
+      transition: opacity .2s;
+    }
+
+    .pkg-card:hover { background: var(--bg-card-hover); }
+    .pkg-card:hover::before { opacity: 1; }
+
+    .pkg-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+    }
+
+    .pkg-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: .12em;
+    }
+
+    .pkg-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 9px;
+      font-family: var(--mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 20px;
+    }
+
+    .pkg-badge.ativo {
+      color: var(--green);
+      background: rgba(16,185,129,.08);
+      border: 1px solid rgba(16,185,129,.18);
+    }
+
+    .pkg-badge.ativo::before {
+      content: '●';
+      font-size: 7px;
+    }
+
+    .pkg-icon {
+      font-size: 22px;
+      margin-bottom: 2px;
+    }
+
+    .pkg-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .pkg-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .pkg-meta {
+      display: flex; gap: 20px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-item { display: flex; flex-direction: column; gap: 1px; }
+
+    .meta-value {
+      font-size: 18px;
+      font-weight: 800;
+      font-family: var(--mono);
+      color: var(--pkg-color, var(--text));
+    }
+
+    .meta-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--text-dim);
+    }
+
+    .pkg-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px;
+      color: var(--pkg-color, var(--accent-light));
+      font-family: var(--mono);
+      margin-top: 2px;
+      transition: gap .2s;
+    }
+
+    .pkg-link:hover { gap: 10px; }
+
+    /* Pkg color themes */
+    .pkg-01 { --pkg-color: #a78bfa; }
+    .pkg-02 { --pkg-color: #34d399; }
+    .pkg-03 { --pkg-color: #fbbf24; }
+    .pkg-04 { --pkg-color: #60a5fa; }
+    .pkg-05 { --pkg-color: #f472b6; }
+    .pkg-06 { --pkg-color: #c084fc; }
+    .pkg-07 { --pkg-color: #fb923c; }
+    .pkg-08 { --pkg-color: #2dd4bf; }
+    .pkg-09 { --pkg-color: #818cf8; }
+    .pkg-10 { --pkg-color: #e879f9; }
+    .pkg-11 { --pkg-color: #4ade80; }
+    .pkg-12 { --pkg-color: #f87171; }
+    .pkg-13 { --pkg-color: #38bdf8; }
+    .pkg-14 { --pkg-color: #a3e635; }
+
+    /* ═══ ABOUT ═══ */
+    .about-section {
+      padding: 80px 40px;
+      max-width: 920px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+
+    .about-section::before {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 400px;
+      background: radial-gradient(ellipse at right, rgba(124,58,237,0.05) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .about-grid {
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: 80px 1fr;
       gap: 32px;
-      align-items: start;
+      align-items: center;
+    }
+
+    .about-avatar-wrap {
+      position: relative;
     }
 
     .about-avatar {
-      width: 72px;
-      height: 72px;
-      border-radius: 12px;
+      width: 80px; height: 80px;
+      border-radius: 16px;
       overflow: hidden;
-      flex-shrink: 0;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(124,58,237,.2);
+      box-shadow: 0 0 0 4px rgba(124,58,237,.05);
     }
 
     .about-avatar img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       object-position: center top;
     }
 
+    .about-tag {
+      position: absolute;
+      bottom: -6px; right: -6px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px;
+    }
+
     .about-content h2 {
-      font-size: 22px;
-      font-weight: 600;
-      margin-bottom: 12px;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -.01em;
     }
 
     .about-content p {
       font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 16px;
-      max-width: 560px;
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: 20px;
+    }
+
+    .about-badges {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .about-badge {
+      font-size: 11px;
+      font-family: var(--mono);
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--border-hover);
+      color: var(--text-muted);
     }
 
     .about-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      display: inline-flex; align-items: center; gap: 7px;
       font-size: 13px;
       color: var(--accent-light);
       font-family: var(--mono);
+      transition: gap .2s;
     }
 
-    /* ─── INSTALAR ─── */
+    .about-link:hover { gap: 11px; }
+
+    /* ═══ INSTALL ═══ */
     .install-section {
       padding: 80px 40px;
-      max-width: 900px;
+      max-width: 920px;
       margin: 0 auto;
       border-top: 1px solid var(--border);
     }
@@ -323,14 +501,26 @@
     .install-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 32px;
+      border-radius: 14px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .install-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .install-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 8px;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -.01em;
     }
 
     .install-sub {
@@ -340,95 +530,77 @@
     }
 
     .code-block {
-      background: #080808;
+      background: #060606;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 20px 24px;
       font-family: var(--mono);
       font-size: 13px;
-      color: #a8a8a8;
-      line-height: 1.8;
+      color: #8a8a8a;
+      line-height: 1.9;
       position: relative;
       overflow-x: auto;
     }
 
-    .code-block .comment { color: var(--text-dim); }
-    .code-block .cmd { color: #e8e8e8; }
+    .code-block .cmt { color: #2e2e2e; }
+    .code-block .cmd { color: #e0e0e0; }
     .code-block .arg { color: var(--accent-light); }
 
     .copy-btn {
-      position: absolute;
-      top: 12px; right: 12px;
+      position: absolute; top: 12px; right: 12px;
       background: var(--border);
-      border: 1px solid #222;
-      border-radius: 5px;
-      padding: 5px 10px;
-      font-family: var(--mono);
-      font-size: 11px;
+      border: 1px solid #1e1e1e;
+      border-radius: 6px;
+      padding: 5px 11px;
+      font-family: var(--mono); font-size: 11px;
       color: var(--text-muted);
       cursor: pointer;
       transition: all .15s;
     }
 
-    .copy-btn:hover { background: #222; color: var(--text); }
-    .copy-btn.copied { color: var(--green); }
+    .copy-btn:hover { background: #1e1e1e; color: var(--text); }
+    .copy-btn.copied { color: var(--green); border-color: rgba(16,185,129,.2); }
 
-    /* ─── FOOTER ─── */
+    /* ═══ FOOTER ═══ */
     footer {
       border-top: 1px solid var(--border);
       padding: 32px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1100px;
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1140px;
       margin: 0 auto;
     }
 
-    .footer-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .footer-left { display: flex; align-items: center; gap: 12px; }
 
     .footer-avatar {
-      width: 28px; height: 28px;
-      border-radius: 6px;
+      width: 30px; height: 30px;
+      border-radius: 7px;
       overflow: hidden;
-      border: 1px solid var(--border);
-      flex-shrink: 0;
+      border: 1px solid rgba(124,58,237,.2);
     }
 
     .footer-avatar img {
       width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center top;
+      object-fit: cover; object-position: center top;
     }
 
-    .footer-name {
-      font-size: 13px;
-      font-weight: 500;
-    }
+    .footer-name { font-size: 13px; font-weight: 600; }
+    .footer-tag { font-size: 11.5px; color: var(--text-muted); }
+    .footer-right { font-size: 12px; color: var(--text-dim); }
 
-    .footer-tag {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .footer-right {
-      font-size: 12px;
-      color: var(--text-dim);
-    }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 640px) {
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 680px) {
       nav { padding: 0 20px; }
       .nav-links { display: none; }
       .hero { padding: 100px 20px 60px; }
-      h1 { font-size: 28px; }
-      .section { padding: 0 20px 60px; }
+      h1 { font-size: 30px; }
+      .packages-section { padding: 0 20px 70px; }
       .packages-grid { grid-template-columns: 1fr; }
       .about-section, .install-section { padding: 60px 20px; }
+      .about-grid { grid-template-columns: 64px 1fr; gap: 20px; }
       footer { padding: 24px 20px; flex-direction: column; gap: 16px; text-align: center; }
+      .hero-stats { gap: 24px; }
+      .hero-ctas { gap: 8px; }
     }
   </style>
 </head>
@@ -437,213 +609,325 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    Henrique Skills<span class="slash">//</span><span class="tag">curadoria editorial</span>
+    <span class="nav-logo-dot"></span>
+    Henrique Skills<span class="nav-tag"> // curadoria editorial</span>
   </a>
-  <ul class="nav-links">
-    <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="reels.html">Reels</a></li>
-    <li><a href="#instalar" class="nav-cta">Instalar</a></li>
-  </ul>
+  <nav class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#skills">Pacotes</a></li>
+      <li><a href="reels.html">Reels</a></li>
+    </ul>
+    <a href="#instalar" class="nav-cta">Instalar</a>
+  </nav>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">
-    <span class="dot"></span>
+  <div class="hero-eyebrow">
+    <span class="eyebrow-dot"></span>
     Curadoria editorial · 2026
   </div>
-  <h1>Skills certas pra fazer<br/>o trabalho. Sem ruído.</h1>
+  <h1>Skills certas pra fazer<br/><span class="gradient-text">o trabalho. Sem ruído.</span></h1>
   <p class="hero-sub">
-    6 pacotes de skills Claude curados. Cada um pra um nicho específico —
-    marketing, vendas, infoprodutos e automação com IA — com jornada de uso testada.
+    14 pacotes de skills Claude curados. Cada um pra um nicho específico —
+    com jornada de uso testada, tom comercial pragmático e resultado mensurável.
   </p>
+  <div class="hero-ctas">
+    <a href="#skills" class="btn-primary">Ver os 14 pacotes →</a>
+    <a href="reels.html" class="btn-ghost">Biblioteca de Reels</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-value">14</span>
+      <span class="hero-stat-label">Pacotes</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-value">140+</span>
+      <span class="hero-stat-label">Skills</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-value">6</span>
+      <span class="hero-stat-label">Nichos</span>
+    </div>
+  </div>
 </section>
 
-<!-- PACOTES -->
-<section class="section" id="skills">
+<!-- PACKAGES -->
+<section class="packages-section" id="skills">
+  <div class="section-header">
+    <span class="section-label">// pacotes ativos</span>
+    <span class="section-title">Selecione um nicho e instale</span>
+  </div>
+
   <div class="packages-grid">
 
     <!-- 01 -->
-    <div class="package-card">
-      <div class="package-header">
-        <span class="package-num">✦ Pacote 01</span>
-        <span class="package-badge">● ATIVO</span>
+    <div class="pkg-card pkg-01">
+      <div class="pkg-header">
+        <span class="pkg-num">✦ Pacote 01</span>
+        <span class="pkg-badge ativo">ATIVO</span>
       </div>
-      <div class="package-title">Marketing Digital & Growth</div>
-      <div class="package-desc">
-        Sistema de marketing com IA: funis, tráfego, posicionamento e crescimento orgânico.
+      <div class="pkg-icon">📈</div>
+      <div class="pkg-title">Marketing Digital & Growth</div>
+      <div class="pkg-desc">Sistema de marketing com IA: funis, tráfego pago, orgânico e posicionamento de marca.</div>
+      <div class="pkg-meta">
+        <div class="meta-item"><span class="meta-value">12</span><span class="meta-label">Skills</span></div>
+        <div class="meta-item"><span class="meta-value">05</span><span class="meta-label">Frameworks</span></div>
+        <div class="meta-item"><span class="meta-value">01</span><span class="meta-label">Stack</span></div>
       </div>
-      <div class="package-meta">
-        <div class="meta-item">
-          <span class="meta-value">12</span>
-          <span class="meta-label">Skills</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">05</span>
-          <span class="meta-label">Frameworks</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">01</span>
-          <span class="meta-label">Stack</span>
-        </div>
-      </div>
-      <a href="marketing-digital.html" class="package-link">Ver pacote →</a>
+      <a href="marketing-digital.html" class="pkg-link">Ver pacote →</a>
     </div>
 
     <!-- 02 -->
-    <div class="package-card">
-      <div class="package-header">
-        <span class="package-num">✦ Pacote 02</span>
-        <span class="package-badge">● ATIVO</span>
+    <div class="pkg-card pkg-02">
+      <div class="pkg-header">
+        <span class="pkg-num">✦ Pacote 02</span>
+        <span class="pkg-badge ativo">ATIVO</span>
       </div>
-      <div class="package-title">SDR & Outbound Vendas</div>
-      <div class="package-desc">
-        Prospecção, qualificação SPIN, follow-up e fechamento com agente SDR inteligente via WhatsApp.
+      <div class="pkg-icon">🎯</div>
+      <div class="pkg-title">SDR & Outbound Vendas</div>
+      <div class="pkg-desc">Prospecção, qualificação SPIN, cadência de follow-up e fechamento com agente inteligente.</div>
+      <div class="pkg-meta">
+        <div class="meta-item"><span class="meta-value">10</span><span class="meta-label">Skills</span></div>
+        <div class="meta-item"><span class="meta-value">04</span><span class="meta-label">Frameworks</span></div>
+        <div class="meta-item"><span class="meta-value">01</span><span class="meta-label">Cadência</span></div>
       </div>
-      <div class="package-meta">
-        <div class="meta-item">
-          <span class="meta-value">10</span>
-          <span class="meta-label">Skills</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">04</span>
-          <span class="meta-label">Frameworks</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">01</span>
-          <span class="meta-label">Cadência</span>
-        </div>
-      </div>
-      <a href="sdr-vendas.html" class="package-link">Ver pacote →</a>
+      <a href="sdr-vendas.html" class="pkg-link">Ver pacote →</a>
     </div>
 
     <!-- 03 -->
-    <div class="package-card">
-      <div class="package-header">
-        <span class="package-num">✦ Pacote 03</span>
-        <span class="package-badge">● ATIVO</span>
+    <div class="pkg-card pkg-03">
+      <div class="pkg-header">
+        <span class="pkg-num">✦ Pacote 03</span>
+        <span class="pkg-badge ativo">ATIVO</span>
       </div>
-      <div class="package-title">Produto de Ativação</div>
-      <div class="package-desc">
-        Criar, estruturar e lançar produtos de baixo ticket com funil de ascensão que converte.
+      <div class="pkg-icon">🚀</div>
+      <div class="pkg-title">Produto de Ativação</div>
+      <div class="pkg-desc">Criar, estruturar e lançar produtos de baixo ticket com funil de ascensão que converte.</div>
+      <div class="pkg-meta">
+        <div class="meta-item"><span class="meta-value">08</span><span class="meta-label">Skills</span></div>
+        <div class="meta-item"><span class="meta-value">06</span><span class="meta-label">Fases</span></div>
+        <div class="meta-item"><span class="meta-value">01</span><span class="meta-label">Funil</span></div>
       </div>
-      <div class="package-meta">
-        <div class="meta-item">
-          <span class="meta-value">08</span>
-          <span class="meta-label">Skills</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">06</span>
-          <span class="meta-label">Fases</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">01</span>
-          <span class="meta-label">Funil</span>
-        </div>
-      </div>
-      <a href="produto-ativacao.html" class="package-link">Ver pacote →</a>
+      <a href="produto-ativacao.html" class="pkg-link">Ver pacote →</a>
     </div>
 
     <!-- 04 -->
-    <div class="package-card">
-      <div class="package-header">
-        <span class="package-num">✦ Pacote 04</span>
-        <span class="package-badge">● ATIVO</span>
+    <div class="pkg-card pkg-04">
+      <div class="pkg-header">
+        <span class="pkg-num">✦ Pacote 04</span>
+        <span class="pkg-badge ativo">ATIVO</span>
       </div>
-      <div class="package-title">WhatsApp & Automação IA</div>
-      <div class="package-desc">
-        Conectar agentes Claude ao WhatsApp. Z-API, API Oficial, webhooks, Inngest e CRM Kanban.
+      <div class="pkg-icon">💬</div>
+      <div class="pkg-title">WhatsApp & Automação IA</div>
+      <div class="pkg-desc">Conectar agentes Claude ao WhatsApp. Z-API, API Oficial, webhooks, Inngest e CRM Kanban.</div>
+      <div class="pkg-meta">
+        <div class="meta-item"><span class="meta-value">10</span><span class="meta-label">Skills</span></div>
+        <div class="meta-item"><span class="meta-value">05</span><span class="meta-label">Ferramentas</span></div>
+        <div class="meta-item"><span class="meta-value">01</span><span class="meta-label">Stack</span></div>
       </div>
-      <div class="package-meta">
-        <div class="meta-item">
-          <span class="meta-value">10</span>
-          <span class="meta-label">Skills</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">05</span>
-          <span class="meta-label">Ferramentas</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">01</span>
-          <span class="meta-label">Stack</span>
-        </div>
-      </div>
-      <a href="whatsapp-automacao.html" class="package-link">Ver pacote →</a>
+      <a href="whatsapp-automacao.html" class="pkg-link">Ver pacote →</a>
     </div>
 
     <!-- 05 -->
-    <div class="package-card">
-      <div class="package-header">
-        <span class="package-num">✦ Pacote 05</span>
-        <span class="package-badge">● ATIVO</span>
+    <div class="pkg-card pkg-05">
+      <div class="pkg-header">
+        <span class="pkg-num">✦ Pacote 05</span>
+        <span class="pkg-badge ativo">ATIVO</span>
       </div>
-      <div class="package-title">Copywriting & Persuasão</div>
-      <div class="package-desc">
-        Framework Hormozi completo: oferta irresistível, VSL, página de vendas, gatilhos e CTAs.
+      <div class="pkg-icon">✍️</div>
+      <div class="pkg-title">Copywriting & Persuasão</div>
+      <div class="pkg-desc">Framework Hormozi completo: oferta irresistível, VSL, página de vendas e CTAs validados.</div>
+      <div class="pkg-meta">
+        <div class="meta-item"><span class="meta-value">09</span><span class="meta-label">Skills</span></div>
+        <div class="meta-item"><span class="meta-value">06</span><span class="meta-label">Frameworks</span></div>
+        <div class="meta-item"><span class="meta-value">01</span><span class="meta-label">Sistema</span></div>
       </div>
-      <div class="package-meta">
-        <div class="meta-item">
-          <span class="meta-value">09</span>
-          <span class="meta-label">Skills</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">06</span>
-          <span class="meta-label">Frameworks</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">01</span>
-          <span class="meta-label">Sistema</span>
-        </div>
-      </div>
-      <a href="copywriting-persuasao.html" class="package-link">Ver pacote →</a>
+      <a href="copywriting-persuasao.html" class="pkg-link">Ver pacote →</a>
     </div>
 
     <!-- 06 -->
-    <div class="package-card">
-      <div class="package-header">
-        <span class="package-num">✦ Pacote 06</span>
-        <span class="package-badge">● ATIVO</span>
+    <div class="pkg-card pkg-06">
+      <div class="pkg-header">
+        <span class="pkg-num">✦ Pacote 06</span>
+        <span class="pkg-badge ativo">ATIVO</span>
       </div>
-      <div class="package-title">IA para Mentorias</div>
-      <div class="package-desc">
-        Estruturar mentorias, jornada de alunos, materiais didáticos e engajamento com IA.
+      <div class="pkg-icon">🎓</div>
+      <div class="pkg-title">IA para Mentorias</div>
+      <div class="pkg-desc">Estruturar mentorias, jornada de alunos, materiais didáticos e engajamento com IA.</div>
+      <div class="pkg-meta">
+        <div class="meta-item"><span class="meta-value">08</span><span class="meta-label">Skills</span></div>
+        <div class="meta-item"><span class="meta-value">04</span><span class="meta-label">Áreas</span></div>
+        <div class="meta-item"><span class="meta-value">01</span><span class="meta-label">Método</span></div>
       </div>
-      <div class="package-meta">
-        <div class="meta-item">
-          <span class="meta-value">08</span>
-          <span class="meta-label">Skills</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">04</span>
-          <span class="meta-label">Áreas</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-value">01</span>
-          <span class="meta-label">Método</span>
-        </div>
+      <a href="ai-mentorias.html" class="pkg-link">Ver pacote →</a>
+    </div>
+
+    <!-- 07 -->
+    <div class="pkg-card pkg-07">
+      <div class="pkg-header">
+        <span class="pkg-num">✦ Pacote 07</span>
+        <span class="pkg-badge ativo">ATIVO</span>
       </div>
-      <a href="ai-mentorias.html" class="package-link">Ver pacote →</a>
+      <div class="pkg-icon">📱</div>
+      <div class="pkg-title">Creator Economy & Instagram</div>
+      <div class="pkg-desc">Creator que cresce com sistema. Conteúdo, monetização, parcerias e crescimento de audiência.</div>
+      <div class="pkg-meta">
+        <div class="meta-item"><span class="meta-value">11</span><span class="meta-label">Skills</span></div>
+        <div class="meta-item"><span class="meta-value">04</span><span class="meta-label">Áreas</span></div>
+        <div class="meta-item"><span class="meta-value">01</span><span class="meta-label">Sistema</span></div>
+      </div>
+      <a href="creator-economy.html" class="pkg-link">Ver pacote →</a>
+    </div>
+
+    <!-- 08 -->
+    <div class="pkg-card pkg-08">
+      <div class="pkg-header">
+        <span class="pkg-num">✦ Pacote 08</span>
+        <span class="pkg-badge ativo">ATIVO</span>
+      </div>
+      <div class="pkg-icon">🛒</div>
+      <div class="pkg-title">E-commerce & Conversão</div>
+      <div class="pkg-desc">Sistema completo de loja: do criativo ao checkout. Shopify, WooCommerce, tráfego e recuperação.</div>
+      <div class="pkg-meta">
+        <div class="meta-item"><span class="meta-value">12</span><span class="meta-label">Skills</span></div>
+        <div class="meta-item"><span class="meta-value">04</span><span class="meta-label">Funções</span></div>
+        <div class="meta-item"><span class="meta-value">01</span><span class="meta-label">Stack</span></div>
+      </div>
+      <a href="ecommerce-conversao.html" class="pkg-link">Ver pacote →</a>
+    </div>
+
+    <!-- 09 -->
+    <div class="pkg-card pkg-09">
+      <div class="pkg-header">
+        <span class="pkg-num">✦ Pacote 09</span>
+        <span class="pkg-badge ativo">ATIVO</span>
+      </div>
+      <div class="pkg-icon">💸</div>
+      <div class="pkg-title">Tráfego Pago Avançado</div>
+      <div class="pkg-desc">Meta Ads e Google Ads avançado: estrutura, criativos, ROAS e escala com IA como co-piloto.</div>
+      <div class="pkg-meta">
+        <div class="meta-item"><span class="meta-value">10</span><span class="meta-label">Skills</span></div>
+        <div class="meta-item"><span class="meta-value">06</span><span class="meta-label">Frameworks</span></div>
+        <div class="meta-item"><span class="meta-value">02</span><span class="meta-label">Canais</span></div>
+      </div>
+      <a href="trafego-pago.html" class="pkg-link">Ver pacote →</a>
+    </div>
+
+    <!-- 10 -->
+    <div class="pkg-card pkg-10">
+      <div class="pkg-header">
+        <span class="pkg-num">✦ Pacote 10</span>
+        <span class="pkg-badge ativo">ATIVO</span>
+      </div>
+      <div class="pkg-icon">⚡</div>
+      <div class="pkg-title">Lançamentos & Perpétuo</div>
+      <div class="pkg-desc">Estratégia completa de lançamento: pré-lançamento, evento e perpétuo com funil de emails.</div>
+      <div class="pkg-meta">
+        <div class="meta-item"><span class="meta-value">10</span><span class="meta-label">Skills</span></div>
+        <div class="meta-item"><span class="meta-value">03</span><span class="meta-label">Fases</span></div>
+        <div class="meta-item"><span class="meta-value">01</span><span class="meta-label">Funil</span></div>
+      </div>
+      <a href="lancamentos-perpetuo.html" class="pkg-link">Ver pacote →</a>
+    </div>
+
+    <!-- 11 -->
+    <div class="pkg-card pkg-11">
+      <div class="pkg-header">
+        <span class="pkg-num">✦ Pacote 11</span>
+        <span class="pkg-badge ativo">ATIVO</span>
+      </div>
+      <div class="pkg-icon">🧠</div>
+      <div class="pkg-title">Coaching & Transformação</div>
+      <div class="pkg-desc">Coach com método, sessão com profundidade. Ferramentas, frameworks e acompanhamento de resultados.</div>
+      <div class="pkg-meta">
+        <div class="meta-item"><span class="meta-value">09</span><span class="meta-label">Skills</span></div>
+        <div class="meta-item"><span class="meta-value">04</span><span class="meta-label">Áreas</span></div>
+        <div class="meta-item"><span class="meta-value">01</span><span class="meta-label">Método</span></div>
+      </div>
+      <a href="coaching-transformacao.html" class="pkg-link">Ver pacote →</a>
+    </div>
+
+    <!-- 12 -->
+    <div class="pkg-card pkg-12">
+      <div class="pkg-header">
+        <span class="pkg-num">✦ Pacote 12</span>
+        <span class="pkg-badge ativo">ATIVO</span>
+      </div>
+      <div class="pkg-icon">🏪</div>
+      <div class="pkg-title">Negócios Locais & PME</div>
+      <div class="pkg-desc">IA aplicada a pequenos negócios: atendimento, marketing local, Google Meu Negócio e WhatsApp.</div>
+      <div class="pkg-meta">
+        <div class="meta-item"><span class="meta-value">10</span><span class="meta-label">Skills</span></div>
+        <div class="meta-item"><span class="meta-value">04</span><span class="meta-label">Áreas</span></div>
+        <div class="meta-item"><span class="meta-value">01</span><span class="meta-label">Sistema</span></div>
+      </div>
+      <a href="negocios-locais.html" class="pkg-link">Ver pacote →</a>
+    </div>
+
+    <!-- 13 -->
+    <div class="pkg-card pkg-13">
+      <div class="pkg-header">
+        <span class="pkg-num">✦ Pacote 13</span>
+        <span class="pkg-badge ativo">ATIVO</span>
+      </div>
+      <div class="pkg-icon">💰</div>
+      <div class="pkg-title">Gestão Financeira com IA</div>
+      <div class="pkg-desc">Controle financeiro pessoal e empresarial. Categorização automática, análises e decisões com IA.</div>
+      <div class="pkg-meta">
+        <div class="meta-item"><span class="meta-value">09</span><span class="meta-label">Skills</span></div>
+        <div class="meta-item"><span class="meta-value">04</span><span class="meta-label">Áreas</span></div>
+        <div class="meta-item"><span class="meta-value">01</span><span class="meta-label">Stack</span></div>
+      </div>
+      <a href="gestao-financeira.html" class="pkg-link">Ver pacote →</a>
+    </div>
+
+    <!-- 14 -->
+    <div class="pkg-card pkg-14">
+      <div class="pkg-header">
+        <span class="pkg-num">✦ Pacote 14</span>
+        <span class="pkg-badge ativo">ATIVO</span>
+      </div>
+      <div class="pkg-icon">👥</div>
+      <div class="pkg-title">Squad Comercial & Time de Vendas</div>
+      <div class="pkg-desc">Estruturar, treinar e escalar time de SDR com IA. Scripts, métricas, 1:1s e cultura de performance.</div>
+      <div class="pkg-meta">
+        <div class="meta-item"><span class="meta-value">10</span><span class="meta-label">Skills</span></div>
+        <div class="meta-item"><span class="meta-value">05</span><span class="meta-label">Áreas</span></div>
+        <div class="meta-item"><span class="meta-value">01</span><span class="meta-label">Método</span></div>
+      </div>
+      <a href="squad-comercial.html" class="pkg-link">Ver pacote →</a>
     </div>
 
   </div>
 </section>
 
-<!-- SOBRE -->
+<!-- ABOUT -->
 <section class="about-section" id="sobre">
-  <p class="section-label">✦ Por trás da curadoria</p>
+  <div class="section-header">
+    <span class="section-label">✦ por trás da curadoria</span>
+  </div>
   <div class="about-grid">
-    <div class="about-avatar"><img src="assets/henrique-perfil.png" alt="Henrique Santos" /></div>
+    <div class="about-avatar-wrap">
+      <div class="about-avatar">
+        <img src="assets/henrique-perfil.png" alt="Henrique Santos" />
+      </div>
+      <div class="about-tag">✦</div>
+    </div>
     <div class="about-content">
-      <h2>Sobre o Henrique</h2>
+      <h2>Henrique Santos</h2>
       <p>
-        Especialista em marketing digital, vendas e automação com IA. Cada pacote aqui é o resultado
-        de aplicação real no mercado — criado pra resolver problemas específicos de negócios que escalam
-        com tecnologia e método.
+        Especialista em marketing digital, vendas e automação com IA.
+        Cada pacote aqui é resultado de aplicação real no mercado — criado pra resolver
+        problemas específicos de negócios que escalam com tecnologia e método.
       </p>
-      <p>
-        Sem enrolação: skills testadas, frameworks validados, resultados mensuráveis.
-      </p>
+      <div class="about-badges">
+        <span class="about-badge">Marketing Digital</span>
+        <span class="about-badge">SDR & Vendas</span>
+        <span class="about-badge">Automação IA</span>
+        <span class="about-badge">Infoprodutos</span>
+      </div>
       <a href="https://instagram.com/souhenriquesantos" target="_blank" class="about-link">
         @souhenriquesantos →
       </a>
@@ -651,19 +935,21 @@
   </div>
 </section>
 
-<!-- INSTALAR -->
+<!-- INSTALL -->
 <section class="install-section" id="instalar">
-  <p class="section-label">✦ Instalar</p>
+  <div class="section-header">
+    <span class="section-label">✦ instalar</span>
+  </div>
   <div class="install-card">
     <h2 class="install-title">Instale qualquer pacote em um comando</h2>
-    <p class="install-sub">Todos os pacotes disponíveis no Claude Code via skills.sh</p>
-    <div class="code-block" id="code-block">
+    <p class="install-sub">Todos os 14 pacotes disponíveis no Claude Code via skills.sh</p>
+    <div class="code-block">
       <button class="copy-btn" onclick="copyCode(this)">copiar</button>
-      <span class="comment"># Buscar skills de um pacote</span><br/>
+      <span class="cmt"># Buscar skills de um pacote</span><br/>
       <span class="cmd">npx henrique-skills find</span> <span class="arg">marketing-digital</span><br/><br/>
-      <span class="comment"># Instalar pacote completo</span><br/>
+      <span class="cmt"># Instalar pacote completo</span><br/>
       <span class="cmd">npx henrique-skills install</span> <span class="arg">sdr-vendas</span><br/><br/>
-      <span class="comment"># Atualizar tudo</span><br/>
+      <span class="cmt"># Atualizar todos os pacotes</span><br/>
       <span class="cmd">npx henrique-skills update</span>
     </div>
   </div>
@@ -672,7 +958,9 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-left">
-    <div class="footer-avatar"><img src="assets/henrique-perfil.png" alt="Henrique" /></div>
+    <div class="footer-avatar">
+      <img src="assets/henrique-perfil.png" alt="Henrique" />
+    </div>
     <div>
       <div class="footer-name">Henrique Skills</div>
       <div class="footer-tag">Curadoria editorial de skills Claude · 2026</div>
@@ -691,7 +979,7 @@ npx henrique-skills find marketing-digital
 # Instalar pacote completo
 npx henrique-skills install sdr-vendas
 
-# Atualizar tudo
+# Atualizar todos os pacotes
 npx henrique-skills update`
 
     navigator.clipboard.writeText(text).then(() => {
