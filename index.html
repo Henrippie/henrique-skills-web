@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Henrique Skills · 6 pacotes de skills Claude</title>
+  <meta name="description" content="Marketplace editorial de skills Claude curados por nicho. Marketing, SDR, Infoprodutos, WhatsApp IA e muito mais." />
+  <meta property="og:title" content="Henrique Skills · 6 pacotes de skills Claude" />
+  <meta property="og:description" content="Skills certas pra fazer o trabalho. Sem ruído." />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Henrique Skills" />
+  <meta name="twitter:card" content="summary" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #050505;
+      --bg-card: #0d0d0d;
+      --bg-card-hover: #111111;
+      --border: #1a1a1a;
+      --border-hover: #252525;
+      --text: #e8e8e8;
+      --text-muted: #555;
+      --text-dim: #333;
+      --accent: #7c3aed;
+      --accent-light: #a78bfa;
+      --accent-glow: rgba(124,58,237,0.12);
+      --green: #22c55e;
+      --mono: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      height: 56px;
+      background: rgba(5,5,5,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .nav-logo .slash {
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .nav-logo .tag {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      transition: color .15s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--text);
+      color: var(--bg) !important;
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: opacity .15s;
+    }
+
+    .nav-cta:hover { opacity: .85; }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 140px 40px 80px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .hero-badge .dot {
+      width: 5px; height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .4; transform: scale(.8); }
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    /* ─── PACOTES GRID ─── */
+    .section { padding: 0 40px 80px; max-width: 1100px; margin: 0 auto; }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .package-card {
+      background: var(--bg-card);
+      padding: 28px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: background .15s;
+      cursor: default;
+      position: relative;
+    }
+
+    .package-card:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .package-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .package-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: .1em;
+    }
+
+    .package-badge {
+      font-size: 9px;
+      font-family: var(--mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: rgba(34,197,94,.08);
+      border: 1px solid rgba(34,197,94,.15);
+      padding: 3px 7px;
+      border-radius: 4px;
+    }
+
+    .package-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .package-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .package-meta {
+      display: flex;
+      gap: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .meta-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      font-family: var(--mono);
+    }
+
+    .meta-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text-dim);
+    }
+
+    .package-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--accent-light);
+      margin-top: 4px;
+      font-family: var(--mono);
+      transition: gap .15s;
+    }
+
+    .package-link:hover { gap: 10px; }
+
+    /* ─── ABOUT ─── */
+    .about-section {
+      padding: 80px 40px;
+      max-width: 900px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 32px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .about-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+
+    .about-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .about-content h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .about-content p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+      max-width: 560px;
+    }
+
+    .about-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--accent-light);
+      font-family: var(--mono);
+    }
+
+    /* ─── INSTALAR ─── */
+    .install-section {
+      padding: 80px 40px;
+      max-width: 900px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+    }
+
+    .install-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+    }
+
+    .install-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .install-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .code-block {
+      background: #080808;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: #a8a8a8;
+      line-height: 1.8;
+      position: relative;
+      overflow-x: auto;
+    }
+
+    .code-block .comment { color: var(--text-dim); }
+    .code-block .cmd { color: #e8e8e8; }
+    .code-block .arg { color: var(--accent-light); }
+
+    .copy-btn {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: var(--border);
+      border: 1px solid #222;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .copy-btn:hover { background: #222; color: var(--text); }
+    .copy-btn.copied { color: var(--green); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-avatar {
+      width: 28px; height: 28px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .footer-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .footer-name {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .footer-tag {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer-right {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 20px 60px; }
+      h1 { font-size: 28px; }
+      .section { padding: 0 20px 60px; }
+      .packages-grid { grid-template-columns: 1fr; }
+      .about-section, .install-section { padding: 60px 20px; }
+      footer { padding: 24px 20px; flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    Henrique Skills<span class="slash">//</span><span class="tag">curadoria editorial</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="reels.html">Reels</a></li>
+    <li><a href="#instalar" class="nav-cta">Instalar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    Curadoria editorial · 2026
+  </div>
+  <h1>Skills certas pra fazer<br/>o trabalho. Sem ruído.</h1>
+  <p class="hero-sub">
+    6 pacotes de skills Claude curados. Cada um pra um nicho específico —
+    marketing, vendas, infoprodutos e automação com IA — com jornada de uso testada.
+  </p>
+</section>
+
+<!-- PACOTES -->
+<section class="section" id="skills">
+  <div class="packages-grid">
+
+    <!-- 01 -->
+    <div class="package-card">
+      <div class="package-header">
+        <span class="package-num">✦ Pacote 01</span>
+        <span class="package-badge">● ATIVO</span>
+      </div>
+      <div class="package-title">Marketing Digital & Growth</div>
+      <div class="package-desc">
+        Sistema de marketing com IA: funis, tráfego, posicionamento e crescimento orgânico.
+      </div>
+      <div class="package-meta">
+        <div class="meta-item">
+          <span class="meta-value">12</span>
+          <span class="meta-label">Skills</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-value">05</span>
+          <span class="meta-label">Frameworks</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-value">01</span>
+          <span class="meta-label">Stack</span>
+        </div>
+      </div>
+      <a href="marketing-digital.html" class="package-link">Ver pacote →</a>
+    </div>
+
+    <!-- 02 -->
+    <div class="package-card">
+      <div class="package-header">
+        <span class="package-num">✦ Pacote 02</span>
+        <span class="package-badge">● ATIVO</span>
+      </div>
+      <div class="package-title">SDR & Outbound Vendas</div>
+      <div class="package-desc">
+        Prospecção, qualificação SPIN, follow-up e fechamento com agente SDR inteligente via WhatsApp.
+      </div>
+      <div class="package-meta">
+        <div class="meta-item">
+          <span class="meta-value">10</span>
+          <span class="meta-label">Skills</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-value">04</span>
+          <span class="meta-label">Frameworks</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-value">01</span>
+          <span class="meta-label">Cadência</span>
+        </div>
+      </div>
+      <a href="sdr-vendas.html" class="package-link">Ver pacote →</a>
+    </div>
+
+    <!-- 03 -->
+    <div class="package-card">
+      <div class="package-header">
+        <span class="package-num">✦ Pacote 03</span>
+        <span class="package-badge">● ATIVO</span>
+      </div>
+      <div class="package-title">Produto de Ativação</div>
+      <div class="package-desc">
+        Criar, estruturar e lançar produtos de baixo ticket com funil de ascensão que converte.
+      </div>
+      <div class="package-meta">
+        <div class="meta-item">
+          <span class="meta-value">08</span>
+          <span class="meta-label">Skills</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-value">06</span>
+          <span class="meta-label">Fases</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-value">01</span>
+          <span class="meta-label">Funil</span>
+        </div>
+      </div>
+      <a href="produto-ativacao.html" class="package-link">Ver pacote →</a>
+    </div>
+
+    <!-- 04 -->
+    <div class="package-card">
+      <div class="package-header">
+        <span class="package-num">✦ Pacote 04</span>
+        <span class="package-badge">● ATIVO</span>
+      </div>
+      <div class="package-title">WhatsApp & Automação IA</div>
+      <div class="package-desc">
+        Conectar agentes Claude ao WhatsApp. Z-API, API Oficial, webhooks, Inngest e CRM Kanban.
+      </div>
+      <div class="package-meta">
+        <div class="meta-item">
+          <span class="meta-value">10</span>
+          <span class="meta-label">Skills</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-value">05</span>
+          <span class="meta-label">Ferramentas</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-value">01</span>
+          <span class="meta-label">Stack</span>
+        </div>
+      </div>
+      <a href="whatsapp-automacao.html" class="package-link">Ver pacote →</a>
+    </div>
+
+    <!-- 05 -->
+    <div class="package-card">
+      <div class="package-header">
+        <span class="package-num">✦ Pacote 05</span>
+        <span class="package-badge">● ATIVO</span>
+      </div>
+      <div class="package-title">Copywriting & Persuasão</div>
+      <div class="package-desc">
+        Framework Hormozi completo: oferta irresistível, VSL, página de vendas, gatilhos e CTAs.
+      </div>
+      <div class="package-meta">
+        <div class="meta-item">
+          <span class="meta-value">09</span>
+          <span class="meta-label">Skills</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-value">06</span>
+          <span class="meta-label">Frameworks</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-value">01</span>
+          <span class="meta-label">Sistema</span>
+        </div>
+      </div>
+      <a href="copywriting-persuasao.html" class="package-link">Ver pacote →</a>
+    </div>
+
+    <!-- 06 -->
+    <div class="package-card">
+      <div class="package-header">
+        <span class="package-num">✦ Pacote 06</span>
+        <span class="package-badge">● ATIVO</span>
+      </div>
+      <div class="package-title">IA para Mentorias</div>
+      <div class="package-desc">
+        Estruturar mentorias, jornada de alunos, materiais didáticos e engajamento com IA.
+      </div>
+      <div class="package-meta">
+        <div class="meta-item">
+          <span class="meta-value">08</span>
+          <span class="meta-label">Skills</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-value">04</span>
+          <span class="meta-label">Áreas</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-value">01</span>
+          <span class="meta-label">Método</span>
+        </div>
+      </div>
+      <a href="ai-mentorias.html" class="package-link">Ver pacote →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="about-section" id="sobre">
+  <p class="section-label">✦ Por trás da curadoria</p>
+  <div class="about-grid">
+    <div class="about-avatar"><img src="assets/henrique-perfil.png" alt="Henrique Santos" /></div>
+    <div class="about-content">
+      <h2>Sobre o Henrique</h2>
+      <p>
+        Especialista em marketing digital, vendas e automação com IA. Cada pacote aqui é o resultado
+        de aplicação real no mercado — criado pra resolver problemas específicos de negócios que escalam
+        com tecnologia e método.
+      </p>
+      <p>
+        Sem enrolação: skills testadas, frameworks validados, resultados mensuráveis.
+      </p>
+      <a href="https://instagram.com/souhenriquesantos" target="_blank" class="about-link">
+        @souhenriquesantos →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALAR -->
+<section class="install-section" id="instalar">
+  <p class="section-label">✦ Instalar</p>
+  <div class="install-card">
+    <h2 class="install-title">Instale qualquer pacote em um comando</h2>
+    <p class="install-sub">Todos os pacotes disponíveis no Claude Code via skills.sh</p>
+    <div class="code-block" id="code-block">
+      <button class="copy-btn" onclick="copyCode(this)">copiar</button>
+      <span class="comment"># Buscar skills de um pacote</span><br/>
+      <span class="cmd">npx henrique-skills find</span> <span class="arg">marketing-digital</span><br/><br/>
+      <span class="comment"># Instalar pacote completo</span><br/>
+      <span class="cmd">npx henrique-skills install</span> <span class="arg">sdr-vendas</span><br/><br/>
+      <span class="comment"># Atualizar tudo</span><br/>
+      <span class="cmd">npx henrique-skills update</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <div class="footer-avatar"><img src="assets/henrique-perfil.png" alt="Henrique" /></div>
+    <div>
+      <div class="footer-name">Henrique Skills</div>
+      <div class="footer-tag">Curadoria editorial de skills Claude · 2026</div>
+    </div>
+  </div>
+  <div class="footer-right">
+    Built with <a href="https://claude.com/code" style="color:#7c3aed">Claude Code</a>
+  </div>
+</footer>
+
+<script>
+  function copyCode(btn) {
+    const text = `# Buscar skills de um pacote
+npx henrique-skills find marketing-digital
+
+# Instalar pacote completo
+npx henrique-skills install sdr-vendas
+
+# Atualizar tudo
+npx henrique-skills update`
+
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'copiado!'
+      btn.classList.add('copied')
+      setTimeout(() => {
+        btn.textContent = 'copiar'
+        btn.classList.remove('copied')
+      }, 2000)
+    })
+  }
+</script>
+
+</body>
+</html>

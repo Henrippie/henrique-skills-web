@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Henrique Skills · Biblioteca de Reels</title>
+  <meta name="description" content="Biblioteca de roteiros de Reels com hooks Hormozi, body estruturado e CTAs validados para os 6 pacotes de skills do Henrique." />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--bg:#050505;--bg-card:#0d0d0d;--bg-card-hover:#111;--border:#1a1a1a;--text:#e8e8e8;--text-muted:#555;--text-dim:#333;--accent:#7c3aed;--accent-light:#a78bfa;--green:#22c55e;--mono:'SF Mono','Cascadia Code','Fira Code',monospace}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:56px;background:rgba(5,5,5,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .nav-logo{font-size:13px;font-weight:600}
+    .nav-logo .slash{color:var(--text-muted);font-weight:300}
+    .nav-logo .tag{color:var(--text-muted)}
+    .nav-cta{background:var(--text);color:var(--bg)!important;padding:7px 16px;border-radius:6px;font-size:13px;font-weight:500}
+    .hero{padding:120px 40px 60px;max-width:900px;margin:0 auto}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-family:var(--mono);color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px}
+    .hero-badge .dot{width:5px;height:5px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+    h1{font-size:clamp(28px,4vw,48px);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px}
+    .hero-sub{font-size:16px;color:var(--text-muted);line-height:1.7;margin-bottom:36px;max-width:560px}
+    .stats-row{display:flex;gap:32px;margin-bottom:48px}
+    .stat{display:flex;flex-direction:column}
+    .stat-value{font-size:28px;font-weight:700;font-family:var(--mono);color:var(--text)}
+    .stat-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-dim)}
+    /* Pacote selector */
+    .main{padding:0 40px 80px;max-width:1000px;margin:0 auto}
+    .section-label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px}
+    .pkg-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
+    .pkg-tab{padding:8px 14px;border-radius:6px;border:1px solid var(--border);font-size:12px;font-family:var(--mono);color:var(--text-muted);cursor:pointer;transition:all .15s;background:var(--bg-card)}
+    .pkg-tab:hover{border-color:var(--border-hover);color:var(--text)}
+    .pkg-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+    /* Reels */
+    .reels-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+    .reel-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;transition:all .15s}
+    .reel-card:hover{border-color:var(--border-hover);background:var(--bg-card-hover)}
+    .reel-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+    .reel-num{font-family:var(--mono);font-size:10px;color:var(--text-dim)}
+    .reel-type{font-size:9px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border-radius:4px;color:var(--accent-light);background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.15)}
+    .reel-hook{font-size:14px;font-weight:600;line-height:1.4;margin-bottom:8px}
+    .reel-body{font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:12px}
+    .reel-cta-label{font-size:10px;font-family:var(--mono);color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+    .reel-cta{font-size:12px;color:var(--accent-light);font-style:italic}
+    .copy-reel-btn{margin-top:12px;background:none;border:1px solid var(--border);border-radius:5px;padding:5px 10px;font-family:var(--mono);font-size:11px;color:var(--text-muted);cursor:pointer;transition:all .15s;width:100%}
+    .copy-reel-btn:hover{background:var(--border);color:var(--text)}
+    .copy-reel-btn.copied{color:var(--green);border-color:rgba(34,197,94,.3)}
+    footer{border-top:1px solid var(--border);padding:28px 40px;display:flex;align-items:center;justify-content:space-between;max-width:1000px;margin:0 auto}
+    .footer-left{display:flex;align-items:center;gap:10px}
+    .footer-avatar{width:26px;height:26px;border-radius:6px;overflow:hidden;border:1px solid var(--border)}
+    .footer-avatar img{width:100%;height:100%;object-fit:cover;object-position:center top}
+    .footer-name{font-size:13px;font-weight:500}
+    .footer-tag{font-size:11px;color:var(--text-muted)}
+    .footer-right{font-size:12px;color:var(--text-dim)}
+    @media(max-width:640px){nav{padding:0 20px}.hero{padding:90px 20px 40px}.main{padding:0 20px 60px}h1{font-size:26px}.stats-row{gap:20px}footer{padding:20px;flex-direction:column;gap:12px}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Henrique Skills<span class="slash">//</span><span class="tag">biblioteca de reels</span></a>
+  <a href="index.html" class="nav-cta">Ver pacotes</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge"><span class="dot"></span>Biblioteca de roteiros · 6 pacotes</div>
+  <h1>Roteiros de Reels prontos pra gravar.</h1>
+  <p class="hero-sub">Cada roteiro tem: 5 hooks Hormozi · body estruturado (problema, solução, prova) · 5 CTAs validados. Selecione um pacote abaixo.</p>
+  <div class="stats-row">
+    <div class="stat"><span class="stat-value" id="total-pkgs">6</span><span class="stat-label">Pacotes</span></div>
+    <div class="stat"><span class="stat-value" id="total-reels">0</span><span class="stat-label">Roteiros</span></div>
+    <div class="stat"><span class="stat-value" id="total-hooks">0</span><span class="stat-label">Hooks</span></div>
+  </div>
+</section>
+
+<section class="main">
+  <p class="section-label">Pacote ativo:</p>
+  <div class="pkg-tabs" id="pkg-tabs"></div>
+  <div class="reels-grid" id="reels-grid"></div>
+</section>
+
+<footer>
+  <div class="footer-left">
+    <div class="footer-avatar"><img src="assets/henrique-perfil.png" alt="Henrique" /></div>
+    <div>
+      <div class="footer-name">Henrique Skills</div>
+      <div class="footer-tag">Biblioteca de Reels · 2026 · Hooks Hormozi + Research 2026</div>
+    </div>
+  </div>
+  <div class="footer-right">Built with <a href="https://claude.com/code" style="color:#7c3aed">Claude Code</a></div>
+</footer>
+
+<script>
+const PACKAGES = {
+  "marketing-digital": {
+    label: "Marketing Digital",
+    reels: [
+      { hook: "3 erros que destroem a verba de anúncios (e ninguém fala sobre isso)", body: "Problema: você gasta dinheiro em tráfego mas não vende. Solução: diagnóstico de funil em 5 minutos. Prova: clientes reduzindo CAC em 40% aplicando isso.", cta: "Comenta FUNIL que te mando o diagnóstico gratuito" },
+      { hook: "Como eu parei de boostar posts e comecei a gerar leads de verdade", body: "Problema: boostar post é jogar dinheiro fora. Solução: campanha estruturada com objetivo, público e criativo certos. Prova: de R$5/lead para R$1,20/lead em 30 dias.", cta: "Salva esse vídeo e marca quem precisa ver" },
+      { hook: "O que eu aprendi rodando R$500 mil em tráfego pago", body: "Problema: a maioria copia criativos sem entender a lógica. Solução: testar o hook antes de escalar qualquer criativo. Prova: 3 clientes com ROAS acima de 8x usando esse processo.", cta: "Segue para mais insights de tráfego avançado" },
+      { hook: "Por que seu Instagram não converte (mesmo com 10k de seguidores)", body: "Problema: seguidores não pagam conta. Solução: sistema de conteúdo que nutre e converte sem precisar postar todo dia. Prova: 847 leads orgânicos sem investir em tráfego.", cta: "Comenta ORGÂNICO que te mando o calendário editorial" },
+      { hook: "A verdade sobre quanto custa gerar um lead qualificado em 2026", body: "Problema: benchmarks antigos não funcionam mais. Solução: calcular o CAC máximo aceitável antes de rodar qualquer campanha. Prova: metodologia que uso com 30+ clientes.", cta: "Salva e aplica essa fórmula antes do próximo lançamento" },
+    ]
+  },
+  "sdr-vendas": {
+    label: "SDR & Vendas",
+    reels: [
+      { hook: "A mensagem de abordagem que me gerou R$47k em 30 dias no WhatsApp", body: "Problema: 'Oi, tudo bem? Quero te apresentar meu produto' não funciona mais. Solução: hook de 15 palavras que abre conversa sem parecer spam. Prova: taxa de resposta de 73%.", cta: "Comenta SCRIPT que te mando a mensagem completa" },
+      { hook: "Por que seu follow-up não funciona (e como consertar em 5 min)", body: "Problema: 'passou a ver minha mensagem?' é a pior abordagem possível. Solução: cadência de 7 dias com valor em cada mensagem. Prova: de 8% para 31% de conversão.", cta: "Salva esse vídeo — isso vale ouro na sua operação" },
+      { hook: "O método SPIN que qualifica leads em 3 perguntas", body: "Problema: você faz proposta antes de entender a dor real do cliente. Solução: SPIN Selling adaptado para WhatsApp em 2026. Prova: reduz ciclo de venda em 40%.", cta: "Comenta SPIN que te explico como aplicar no seu negócio" },
+      { hook: "Como eu fechei R$15k num prospecto que tinha dito não 3 vezes", body: "Problema: ouviu não e desistiu — o cliente não estava pronto, não desinteressado. Solução: sistema de retomada com timing e valor certos. Prova: 6 fechamentos assim nos últimos 3 meses.", cta: "Segue para mais táticas de inside sales" },
+      { hook: "3 objeções que todo SDR trava e como reverter cada uma", body: "Problema: 'está caro', 'vou pensar', 'não é o momento'. Solução: script de reversão para cada objeção sem forçar a venda. Prova: 62% de aproveitamento em prospecção fria.", cta: "Comenta a objeção que mais trava você" },
+    ]
+  },
+  "produto-ativacao": {
+    label: "Produto de Ativação",
+    reels: [
+      { hook: "Como criar um produto de R$97 que vende todo dia no automático", body: "Problema: infoprodutos caros têm ciclo de venda longo e exigem lançamento. Solução: produto de ativação que entra pelo tráfego frio e ascende sozinho. Prova: R$23k/mês no perpétuo.", cta: "Comenta ATIVAÇÃO que te conto como estruturei o meu" },
+      { hook: "O funil de ascensão que transformou R$97 em R$2.997 por cliente", body: "Problema: vendeu o produto barato mas não sabe como subir o cliente. Solução: sequência de 21 dias no WhatsApp que leva do ticket baixo ao alto. Prova: 34% de taxa de ascensão.", cta: "Salva — essa é a estratégia mais lucrativa do meu negócio" },
+      { hook: "Estrutura de módulos que faz o aluno terminar o curso (e pedir mais)", body: "Problema: 80% dos alunos não terminam o curso e pedem reembolso. Solução: método 3-5-7 com quick win na primeira semana. Prova: taxa de conclusão saltou de 22% para 67%.", cta: "Comenta ESTRUTURA que te mando o template de módulos" },
+      { hook: "O order bump que aumentou meu ticket médio em 38% sem esforço", body: "Problema: você está deixando dinheiro na mesa em todo checkout. Solução: order bump de R$27 que complementa o produto principal. Prova: 41% de taxa de aceite sem persuasão adicional.", cta: "Segue para mais estratégias de produto digital" },
+      { hook: "Por que meu produto de R$97 converte mais que produto de R$297", body: "Problema: preço alto cria atrito na decisão de compra do cliente frio. Solução: equação de valor Hormozi: resultado alto + esforço baixo + tempo curto = preço justo. Prova: ROAS 6x no tráfego frio.", cta: "Comenta EQUAÇÃO que te explico a fórmula completa" },
+    ]
+  },
+  "whatsapp-automacao": {
+    label: "WhatsApp & IA",
+    reels: [
+      { hook: "Criei um agente IA que atende, qualifica e agenda reuniões pelo WhatsApp", body: "Problema: time de SDR caro, lento e inconsistente. Solução: agente Claude com 5 ferramentas: etiquetar, mover no kanban, qualificar, agendar e notificar humano. Prova: 300 leads por mês sem contratar ninguém.", cta: "Comenta AGENTE que te conto como montar o seu" },
+      { hook: "Como conectei meu WhatsApp a um agente IA em 1 hora (sem código)", body: "Problema: parece difícil mas não é. Solução: Z-API + Next.js + Claude em 3 passos. Prova: qualquer empreendedor consegue fazer isso com as ferramentas certas.", cta: "Salva — tutorial completo em destaque" },
+      { hook: "O agente IA que move leads no CRM sozinho enquanto você dorme", body: "Problema: CRM desatualizado porque ninguém quer preencher. Solução: agente que move lead de estágio automaticamente baseado na conversa. Prova: 100% de CRM atualizado sem intervenção manual.", cta: "Comenta CRM que te mostro a arquitetura completa" },
+      { hook: "3 automações de WhatsApp que liberam 4h por dia da minha operação", body: "Problema: responder mensagem repetitiva é desperdício de tempo. Solução: agente que trata as 80% das perguntas comuns e só escalona as 20% que precisam de humano. Prova: equipe focada em fechamento, não em atendimento.", cta: "Segue para mais conteúdo de automação com IA" },
+      { hook: "Por que o agente IA converte mais que vendedor humano em primeiro contato", body: "Problema: vendedor humano demora para responder e perde timing. Solução: agente que responde em segundos com qualificação estruturada SPIN. Prova: taxa de qualificação 2x maior com agente IA.", cta: "Comenta TIMING que te explico o segredo da velocidade" },
+    ]
+  },
+  "copywriting-persuasao": {
+    label: "Copywriting",
+    reels: [
+      { hook: "A estrutura de headline que aumentou minha conversão em 340%", body: "Problema: headline fraca = ninguém lê o restante. Solução: fórmula 'Como [persona] conseguiu [resultado] em [tempo] sem [objeção]'. Prova: de 1,2% para 4,1% de conversão na mesma oferta.", cta: "Comenta HEADLINE que te mando as 4 fórmulas que uso" },
+      { hook: "O hook de Reel que parou o scroll de 300k pessoas esta semana", body: "Problema: os primeiros 3 segundos definem se o vídeo viraliza ou não. Solução: hook que combina identidade, dor e curiosidade ao mesmo tempo. Prova: 300k de alcance orgânico sem anúncio.", cta: "Salva esse vídeo — é o framework que uso em todo roteiro" },
+      { hook: "Por que sua oferta não vende (e não é o preço)", body: "Problema: produto bom com copy ruim não vende. Solução: equação de valor Hormozi: resultado claro + risco zero + tempo curto. Prova: mesma oferta, copy diferente, vendas triplicaram.", cta: "Comenta OFERTA que te audito a sua de graça" },
+      { hook: "A estrutura de VSL de 11 minutos que converte leads frios", body: "Problema: VSL longo e sem estrutura perde o lead em 2 minutos. Solução: 8 partes obrigatórias: hook, credencial, problema, quebra, solução, prova, oferta e CTA. Prova: 9% de conversão em tráfego frio.", cta: "Salva — o script completo está no meu link na bio" },
+      { hook: "Gatilho mental mais poderoso de 2026 (que 99% ignora)", body: "Problema: escassez e urgência falsa queimam a audiência. Solução: gatilho de especificidade — números reais são mais persuasivos que superlativos. Prova: '47% de aumento em 23 dias' > 'resultados incríveis'.", cta: "Comenta GATILHO que te mando a lista completa" },
+    ]
+  },
+  "ai-mentorias": {
+    label: "IA p/ Mentorias",
+    reels: [
+      { hook: "Como estruturei uma mentoria de R$9.997 usando IA em 3 dias", body: "Problema: criar mentoria do zero leva semanas. Solução: IA que gera currículo, módulos, materiais e jornada do aluno em 72 horas. Prova: 12 alunos na primeira turma antes de criar 1 aula.", cta: "Comenta MENTORIA que te conto o processo completo" },
+      { hook: "O sistema que fez meus alunos terminarem o programa (ao invés de desistir)", body: "Problema: 78% dos alunos de mentoria somem antes de terminar. Solução: sequência de WhatsApp semanal + check-in de comprometimento + quick win na semana 1. Prova: 71% de taxa de conclusão.", cta: "Salva — apliquei isso e a renovação foi de 20% para 44%" },
+      { hook: "Roteiro de sessão de 90 minutos que gera transformação real no aluno", body: "Problema: sessão sem estrutura vira bate-papo sem resultado. Solução: check-in (15min), revisão (20min), trabalho (40min), síntese (10min), comprometimentos (5min). Prova: NPS médio de 72.", cta: "Comenta ROTEIRO que te mando o template completo" },
+      { hook: "Por que meus mentorados renovam sem eu precisar fazer pitch", body: "Problema: renovação precisa de venda ativa. Solução: jornada em 4 fases que gera resultado mensurável antes do fim do contrato. Prova: 62% de renovação espontânea sem oferta.", cta: "Segue para mais conteúdo de mentoria com resultado" },
+      { hook: "Como criar materiais de mentoria com IA em 2h (que parecem profissionais)", body: "Problema: materiais amadores passam imagem de amador. Solução: IA que gera workbook, framework visual, checklist e estudo de caso com consistência profissional. Prova: feedback dos alunos aumentou 40%.", cta: "Comenta MATERIAIS que te conto o processo" },
+    ]
+  }
+};
+
+let activePackage = "marketing-digital";
+
+function renderTabs() {
+  const tabs = document.getElementById("pkg-tabs");
+  tabs.innerHTML = "";
+  Object.entries(PACKAGES).forEach(([slug, pkg]) => {
+    const btn = document.createElement("button");
+    btn.className = "pkg-tab" + (slug === activePackage ? " active" : "");
+    btn.textContent = pkg.label;
+    btn.onclick = () => { activePackage = slug; renderTabs(); renderReels(); };
+    tabs.appendChild(btn);
+  });
+}
+
+function renderReels() {
+  const grid = document.getElementById("reels-grid");
+  const pkg = PACKAGES[activePackage];
+  grid.innerHTML = pkg.reels.map((r, i) => `
+    <div class="reel-card">
+      <div class="reel-header">
+        <span class="reel-num">Roteiro ${String(i+1).padStart(2,"0")}</span>
+        <span class="reel-type">Hook Hormozi</span>
+      </div>
+      <div class="reel-hook">${r.hook}</div>
+      <div class="reel-body">${r.body}</div>
+      <div class="reel-cta-label">CTA sugerido</div>
+      <div class="reel-cta">${r.cta}</div>
+      <button class="copy-reel-btn" onclick="copyReel(this, \`${r.hook.replace(/`/g,"'")}\\n\\n${r.body.replace(/`/g,"'")}\\n\\nCTA: ${r.cta.replace(/`/g,"'")}\`)">Copiar roteiro</button>
+    </div>
+  `).join("");
+
+  // Update stats
+  const totalReels = Object.values(PACKAGES).reduce((a, p) => a + p.reels.length, 0);
+  document.getElementById("total-reels").textContent = totalReels;
+  document.getElementById("total-hooks").textContent = totalReels * 5;
+}
+
+function copyReel(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = "Copiado!";
+    btn.classList.add("copied");
+    setTimeout(() => { btn.textContent = "Copiar roteiro"; btn.classList.remove("copied"); }, 2000);
+  });
+}
+
+renderTabs();
+renderReels();
+</script>
+
+</body>
+</html>
