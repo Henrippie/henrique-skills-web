@@ -136,23 +136,28 @@
     .nav-cta:hover { opacity: .9; transform: translateY(-1px); }
 
     /* ═══════════════════════════════
-       HERO
+       HERO — Minimalist split layout
     ═══════════════════════════════ */
     .hero {
-      position: relative; padding: 140px 40px 90px;
-      max-width: 920px; margin: 0 auto;
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      overflow: hidden;
     }
-    .hero::before {
-      content: ''; position: absolute; top: 80px; left: -100px;
-      width: 600px; height: 400px;
-      background: radial-gradient(ellipse, rgba(124,58,237,0.07) 0%, transparent 70%);
-      pointer-events: none;
+
+    /* Left: text side */
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 48px 80px 60px;
+      position: relative; z-index: 2;
     }
 
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--mono); font-size: 11px; color: var(--text-muted);
-      letter-spacing: .1em; text-transform: uppercase; margin-bottom: 28px;
+      font-family: var(--mono); font-size: 10px; color: var(--text-muted);
+      letter-spacing: .14em; text-transform: uppercase; margin-bottom: 32px;
     }
     .eyebrow-dot {
       width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
@@ -160,18 +165,30 @@
     }
     @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.4; transform:scale(.75); } }
 
+    .hero-name {
+      font-size: clamp(14px, 1.8vw, 20px);
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: .02em;
+      margin-bottom: 10px;
+      font-family: var(--mono);
+    }
+
     .hero h1 {
-      font-size: clamp(36px, 5.5vw, 64px); font-weight: 800;
-      line-height: 1.05; letter-spacing: -.03em; margin-bottom: 20px;
+      font-size: clamp(40px, 5.5vw, 70px); font-weight: 800;
+      line-height: 1.0; letter-spacing: -.04em; margin-bottom: 24px;
     }
     .gradient-text {
       background: linear-gradient(135deg, #fff 0%, var(--accent-light) 50%, #c084fc 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
 
-    .hero-sub { font-size: 17px; color: var(--text-muted); max-width: 540px; line-height: 1.75; margin-bottom: 48px; }
+    .hero-sub {
+      font-size: 15px; color: var(--text-muted); max-width: 420px;
+      line-height: 1.8; margin-bottom: 40px;
+    }
 
-    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 56px; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 60px; }
 
     .btn-primary {
       display: inline-flex; align-items: center; gap: 8px;
@@ -187,20 +204,100 @@
     }
     .btn-ghost:hover { border-color: #333; color: var(--text); }
 
-    .hero-stats { display: flex; gap: 40px; }
-    .hero-stat { display: flex; flex-direction: column; gap: 2px; }
+    .hero-stats { display: flex; gap: 32px; }
+    .hero-stat { display: flex; flex-direction: column; gap: 3px; }
     .hero-stat-value {
-      font-size: 32px; font-weight: 800; letter-spacing: -.02em;
-      background: linear-gradient(135deg, var(--text) 0%, #888 100%);
+      font-size: 28px; font-weight: 800; letter-spacing: -.02em;
+      background: linear-gradient(135deg, var(--text) 0%, #777 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .hero-stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); }
+    .hero-stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: var(--text-muted); }
+
+    /* Vertical divider */
+    .hero-divider {
+      position: absolute; left: 50%; top: 15%; bottom: 15%;
+      width: 1px; background: linear-gradient(to bottom, transparent, var(--border), transparent);
+      z-index: 3;
+    }
+
+    /* Right: photo side */
+    .hero-right {
+      position: relative; overflow: hidden;
+    }
+
+    .hero-photo-wrap {
+      position: absolute; inset: 0;
+      display: flex; align-items: flex-end; justify-content: center;
+    }
+
+    .hero-photo {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(15%) contrast(1.05);
+      transition: filter .4s ease;
+    }
+    .hero-right:hover .hero-photo { filter: grayscale(0%) contrast(1.08); }
+
+    /* Photo overlay gradient */
+    .hero-photo-overlay {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, rgba(3,3,3,0.55) 0%, transparent 40%),
+        linear-gradient(to top, rgba(3,3,3,0.7) 0%, transparent 45%);
+      pointer-events: none;
+    }
+
+    /* Floating badge chips on the photo */
+    .hero-badge-chips {
+      position: absolute; inset: 0; pointer-events: none; z-index: 4;
+    }
+
+    .chip {
+      position: absolute;
+      background: rgba(10,10,10,0.85);
+      border: 1px solid var(--border-hover);
+      border-radius: 100px;
+      padding: 7px 14px;
+      font-family: var(--mono); font-size: 11px; color: var(--text-muted);
+      letter-spacing: .06em;
+      backdrop-filter: blur(8px);
+      animation: float-chip 4s ease-in-out infinite;
+      white-space: nowrap;
+    }
+    .chip .chip-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+
+    .chip-1 { top: 18%; right: 10%; animation-delay: 0s; }
+    .chip-2 { top: 38%; right: 6%; animation-delay: 0.8s; }
+    .chip-3 { bottom: 28%; right: 12%; animation-delay: 1.6s; }
+    .chip-4 { bottom: 18%; left: 8%; animation-delay: 2.4s; }
+
+    @keyframes float-chip {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* Bottom credit bar */
+    .hero-credit {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 4;
+    }
+
+    .hero-credit-name {
+      font-size: 13px; font-weight: 600; color: var(--text);
+    }
+    .hero-credit-handle {
+      font-family: var(--mono); font-size: 11px; color: var(--text-muted); letter-spacing: .06em;
+    }
 
     /* ═══════════════════════════════
-       PACKAGES — Scroll Cards
+       PACKAGES — Vertical Stack Scroll
     ═══════════════════════════════ */
     .packages-section {
-      padding: 0 0 100px;
+      padding: 0 0 0;
       max-width: 100%;
       position: relative;
     }
@@ -212,51 +309,58 @@
     .section-label { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-dim); }
     .section-title { font-size: 13px; color: var(--text-muted); font-weight: 400; }
 
-    .scroll-nav {
-      display: flex; align-items: center; gap: 8px; padding: 0 40px; margin-bottom: 20px;
+    /* Remove old horizontal scroll nav */
+    .scroll-nav { display: none; }
+
+    /* Stack container */
+    .stack-outer {
+      position: relative;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 32px 200px;
     }
 
-    .scroll-btn {
-      width: 32px; height: 32px; border-radius: 8px;
-      background: var(--bg-card); border: 1px solid var(--border-hover);
-      color: var(--text-muted); font-size: 14px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: all .2s;
-    }
-    .scroll-btn:hover { background: #141414; color: var(--text); border-color: #333; }
-
-    .scroll-hint {
-      font-family: var(--mono); font-size: 10px; color: var(--text-dim);
-      letter-spacing: .1em; text-transform: uppercase; margin-left: 4px;
+    /* Each card wrapper — sticky so cards overlap as you scroll */
+    .stack-item {
+      position: sticky;
+      /* top is set inline per card, staggered by 8px */
+      margin-bottom: -16px; /* pull next card up, creates overlap */
+      transition: transform .4s cubic-bezier(.22,1,.36,1);
     }
 
+    /* Remove old horizontal wrapper — just a passthrough now */
     .scroll-track-wrapper {
-      overflow-x: auto; overflow-y: visible;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding: 12px 40px 24px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      display: flex; gap: 1px;
+      display: block;
     }
-    .scroll-track-wrapper::-webkit-scrollbar { display: none; }
+
+    /* Card enter animation */
+    @keyframes card-in {
+      from { opacity: 0; transform: translateY(40px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .pkg-card.card-visible {
+      animation: card-in 0.5s cubic-bezier(.22,1,.36,1) forwards;
+    }
 
     /* ═══════════════════════════════
-       SPOTLIGHT CARD
+       SPOTLIGHT CARD — vertical stack
     ═══════════════════════════════ */
     .pkg-card {
-      flex-shrink: 0;
-      width: 300px;
+      width: 100%;
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-      display: flex; flex-direction: column; gap: 10px;
+      border-radius: 18px;
+      padding: 28px 28px 24px;
+      display: flex; flex-direction: column; gap: 12px;
       cursor: default;
       position: relative;
       overflow: hidden;
-      scroll-snap-align: start;
-      transition: border-color .3s, transform .2s;
+      transition: border-color .3s, box-shadow .3s;
+      /* Stack depth shadow */
+      box-shadow: 0 4px 40px rgba(0,0,0,0.5);
+    }
+    .pkg-card:hover {
+      box-shadow: 0 8px 60px rgba(0,0,0,0.6), 0 0 0 1px var(--border-hover);
     }
 
     /* Spotlight gradient overlay */
@@ -556,18 +660,27 @@
     /* ═══════════════════════════════
        RESPONSIVE
     ═══════════════════════════════ */
-    @media (max-width: 680px) {
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { height: 60vw; min-height: 320px; }
+      .hero-divider { display: none; }
+      .hero-left { padding: 100px 24px 48px; }
+      .chip-2, .chip-4 { display: none; }
+    }
+
+    @media (max-width: 640px) {
       nav { padding: 0 20px; }
       .nav-links { display: none; }
-      .hero { padding: 100px 20px 60px; }
+      .hero-right { height: 72vw; }
+      .hero-left { padding: 88px 20px 40px; }
       .section-header { padding: 0 20px; }
       .scroll-nav { padding: 0 20px; }
-      .scroll-track-wrapper { padding: 12px 20px 24px; }
-      .pkg-card { width: 270px; }
+      .stack-outer { padding: 0 16px 120px; }
+      .pkg-card { width: 100%; }
       .about-section, .install-section { padding: 60px 20px; }
       .about-grid { grid-template-columns: 64px 1fr; gap: 20px; }
       footer { padding: 24px 20px; flex-direction: column; gap: 16px; text-align: center; }
-      .hero-stats { gap: 24px; }
+      .hero-stats { gap: 20px; }
       .hero-ctas { gap: 8px; }
     }
   </style>
@@ -620,40 +733,84 @@
   </div>
 </nav>
 
-<!-- ═══ HERO ═══ -->
+<!-- ═══ HERO — Minimalist Split ═══ -->
 <section class="hero">
-  <div class="hero-eyebrow">
-    <span class="eyebrow-dot"></span>
-    Curadoria editorial · 2026
+
+  <!-- Left: text -->
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Curadoria editorial · 2026
+    </div>
+    <div class="hero-name">@souhenriquesantos</div>
+    <h1>Skills certas pra fazer<br/><span class="gradient-text">o trabalho.</span></h1>
+    <p class="hero-sub">
+      14 pacotes de skills Claude curados por nicho.
+      Marketing, SDR, IA, Copywriting — com jornada testada
+      e resultado mensurável.
+    </p>
+    <div class="hero-ctas">
+      <a href="#skills" class="btn-primary">Ver os 14 pacotes →</a>
+      <a href="reels.html" class="btn-ghost">Reels</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="hero-stat-value">14</span><span class="hero-stat-label">Pacotes</span></div>
+      <div class="hero-stat"><span class="hero-stat-value">140+</span><span class="hero-stat-label">Skills</span></div>
+      <div class="hero-stat"><span class="hero-stat-value">6</span><span class="hero-stat-label">Nichos</span></div>
+    </div>
   </div>
-  <h1>Skills certas pra fazer<br/><span class="gradient-text">o trabalho. Sem ruído.</span></h1>
-  <p class="hero-sub">14 pacotes de skills Claude curados. Cada um pra um nicho específico — com jornada de uso testada, tom comercial pragmático e resultado mensurável.</p>
-  <div class="hero-ctas">
-    <a href="#skills" class="btn-primary">Ver os 14 pacotes →</a>
-    <a href="reels.html" class="btn-ghost">Biblioteca de Reels</a>
+
+  <!-- Divider -->
+  <div class="hero-divider"></div>
+
+  <!-- Right: photo -->
+  <div class="hero-right">
+    <div class="hero-photo-wrap">
+      <img class="hero-photo" src="assets/henrique-hero.png" alt="Henrique Santos" />
+    </div>
+    <div class="hero-photo-overlay"></div>
+
+    <!-- Floating chips -->
+    <div class="hero-badge-chips">
+      <div class="chip chip-1">
+        <span class="chip-dot" style="background:#a78bfa"></span>Marketing Digital
+      </div>
+      <div class="chip chip-2">
+        <span class="chip-dot" style="background:#34d399"></span>SDR & Vendas
+      </div>
+      <div class="chip chip-3">
+        <span class="chip-dot" style="background:#60a5fa"></span>Automação IA
+      </div>
+      <div class="chip chip-4">
+        <span class="chip-dot" style="background:#fbbf24"></span>Infoprodutos
+      </div>
+    </div>
+
+    <!-- Bottom credit -->
+    <div class="hero-credit">
+      <div>
+        <div class="hero-credit-name">Henrique Santos</div>
+        <div class="hero-credit-handle">@souhenriquesantos</div>
+      </div>
+      <a href="https://instagram.com/souhenriquesantos" target="_blank" style="font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.06em;transition:color .2s" onmouseover="this.style.color='#e8e8e8'" onmouseout="this.style.color=''">Instagram →</a>
+    </div>
   </div>
-  <div class="hero-stats">
-    <div class="hero-stat"><span class="hero-stat-value">14</span><span class="hero-stat-label">Pacotes</span></div>
-    <div class="hero-stat"><span class="hero-stat-value">140+</span><span class="hero-stat-label">Skills</span></div>
-    <div class="hero-stat"><span class="hero-stat-value">6</span><span class="hero-stat-label">Nichos</span></div>
-  </div>
+
 </section>
 
-<!-- ═══ PACKAGES — Scroll Cards ═══ -->
+<!-- ═══ PACKAGES — Vertical Stack ═══ -->
 <section class="packages-section" id="skills">
   <div class="section-header">
     <span class="section-label">// pacotes ativos</span>
-    <span class="section-title">Selecione um nicho e instale</span>
+    <span class="section-title">Role para descobrir os 14 pacotes</span>
   </div>
-  <div class="scroll-nav">
-    <button class="scroll-btn" id="scroll-left" onclick="scrollCards(-1)">←</button>
-    <button class="scroll-btn" id="scroll-right" onclick="scrollCards(1)">→</button>
-    <span class="scroll-hint">arraste para ver todos</span>
-  </div>
+  <div class="scroll-nav"></div>
 
+  <div class="stack-outer">
   <div class="scroll-track-wrapper" id="scroll-track">
 
     <!-- 01 -->
+    <div class="stack-item" style="z-index:1;top:56px">
     <div class="pkg-card pkg-01" onmousemove="spotlight(event,this)" data-link="marketing-digital.html" data-title="Marketing Digital & Growth" data-icon="📈" data-color="#a78bfa" data-steps='["Diagnóstico de posicionamento e gaps","Estrutura de funil TOFU→MOFU→BOFU","Campanhas Meta Ads com segmentação","Calendário orgânico de 30 dias","Otimização e escala de ROAS"]'>
       <div class="pkg-card-spotlight"></div>
       <div class="pkg-header"><span class="pkg-num">✦ Pacote 01</span><span class="pkg-badge ativo">ATIVO</span></div>
@@ -667,8 +824,10 @@
       </div>
       <button class="pkg-link-btn" onclick="openAgent(this.closest('.pkg-card'))">Ver pacote →</button>
     </div>
+    </div>
 
     <!-- 02 -->
+    <div class="stack-item" style="z-index:2;top:64px">
     <div class="pkg-card pkg-02" onmousemove="spotlight(event,this)" data-link="sdr-vendas.html" data-title="SDR & Outbound Vendas" data-icon="🎯" data-color="#34d399" data-steps='["Script de abordagem fria validado","Qualificação SPIN com 12 perguntas","Cadência de 7 dias multi-canal","Pipeline e gestão de objeções","Fechamento e expansão de conta"]'>
       <div class="pkg-card-spotlight"></div>
       <div class="pkg-header"><span class="pkg-num">✦ Pacote 02</span><span class="pkg-badge ativo">ATIVO</span></div>
@@ -682,8 +841,10 @@
       </div>
       <button class="pkg-link-btn" onclick="openAgent(this.closest('.pkg-card'))">Ver pacote →</button>
     </div>
+    </div>
 
     <!-- 03 -->
+    <div class="stack-item" style="z-index:3;top:72px">
     <div class="pkg-card pkg-03" onmousemove="spotlight(event,this)" data-link="produto-ativacao.html" data-title="Produto de Ativação" data-icon="🚀" data-color="#fbbf24" data-steps='["Definição de oferta Hormozi R$97-297","Estrutura de aulas em 3-5-7 módulos","Página de vendas e criativos","Order bumps e upsells de ascensão","Funil perpétuo e métricas"]'>
       <div class="pkg-card-spotlight"></div>
       <div class="pkg-header"><span class="pkg-num">✦ Pacote 03</span><span class="pkg-badge ativo">ATIVO</span></div>
@@ -697,8 +858,10 @@
       </div>
       <button class="pkg-link-btn" onclick="openAgent(this.closest('.pkg-card'))">Ver pacote →</button>
     </div>
+    </div>
 
     <!-- 04 -->
+    <div class="stack-item" style="z-index:4;top:80px">
     <div class="pkg-card pkg-04" onmousemove="spotlight(event,this)" data-link="whatsapp-automacao.html" data-title="WhatsApp & Automação IA" data-icon="💬" data-color="#60a5fa" data-steps='["Conexão Z-API ou API Oficial","Webhook + Inngest para filas","Agente Claude com 5 ferramentas","CRM Kanban com etiquetas","Escalação humana inteligente"]'>
       <div class="pkg-card-spotlight"></div>
       <div class="pkg-header"><span class="pkg-num">✦ Pacote 04</span><span class="pkg-badge ativo">ATIVO</span></div>
@@ -712,8 +875,10 @@
       </div>
       <button class="pkg-link-btn" onclick="openAgent(this.closest('.pkg-card'))">Ver pacote →</button>
     </div>
+    </div>
 
     <!-- 05 -->
+    <div class="stack-item" style="z-index:5;top:88px">
     <div class="pkg-card pkg-05" onmousemove="spotlight(event,this)" data-link="copywriting-persuasao.html" data-title="Copywriting & Persuasão" data-icon="✍️" data-color="#f472b6" data-steps='["Framework Hormozi de oferta irresistível","VSL com 8 partes de alto impacto","Página de vendas com anatomia validada","Hooks para anúncio e orgânico","Sequência de e-mails de conversão"]'>
       <div class="pkg-card-spotlight"></div>
       <div class="pkg-header"><span class="pkg-num">✦ Pacote 05</span><span class="pkg-badge ativo">ATIVO</span></div>
@@ -727,8 +892,10 @@
       </div>
       <button class="pkg-link-btn" onclick="openAgent(this.closest('.pkg-card'))">Ver pacote →</button>
     </div>
+    </div>
 
     <!-- 06 -->
+    <div class="stack-item" style="z-index:6;top:96px">
     <div class="pkg-card pkg-06" onmousemove="spotlight(event,this)" data-link="ai-mentorias.html" data-title="IA para Mentorias" data-icon="🎓" data-color="#c084fc" data-steps='["Diagnóstico de perfil do aluno","Plano de aprendizagem ADDIE","Sessão de 90min estruturada","Materiais e exercícios práticos","Engajamento e gamificação"]'>
       <div class="pkg-card-spotlight"></div>
       <div class="pkg-header"><span class="pkg-num">✦ Pacote 06</span><span class="pkg-badge ativo">ATIVO</span></div>
@@ -742,8 +909,10 @@
       </div>
       <button class="pkg-link-btn" onclick="openAgent(this.closest('.pkg-card'))">Ver pacote →</button>
     </div>
+    </div>
 
     <!-- 07 -->
+    <div class="stack-item" style="z-index:7;top:104px">
     <div class="pkg-card pkg-07" onmousemove="spotlight(event,this)" data-link="creator-economy.html" data-title="Creator Economy & Instagram" data-icon="📱" data-color="#fb923c" data-steps='["Posicionamento de nicho no Instagram","Roteiros de Reels virais com hook","Calendário de conteúdo 30 dias","Negociação de parcerias com marcas","Monetização e análise de métricas"]'>
       <div class="pkg-card-spotlight"></div>
       <div class="pkg-header"><span class="pkg-num">✦ Pacote 07</span><span class="pkg-badge ativo">ATIVO</span></div>
@@ -757,8 +926,10 @@
       </div>
       <button class="pkg-link-btn" onclick="openAgent(this.closest('.pkg-card'))">Ver pacote →</button>
     </div>
+    </div>
 
     <!-- 08 -->
+    <div class="stack-item" style="z-index:8;top:112px">
     <div class="pkg-card pkg-08" onmousemove="spotlight(event,this)" data-link="ecommerce-conversao.html" data-title="E-commerce & Conversão" data-icon="🛒" data-color="#2dd4bf" data-steps='["Auditoria de taxa de conversão","Otimização de fichas de produto","Estrutura de anúncios com ROAS","Recuperação de carrinho abandonado","Pós-venda e fidelização"]'>
       <div class="pkg-card-spotlight"></div>
       <div class="pkg-header"><span class="pkg-num">✦ Pacote 08</span><span class="pkg-badge ativo">ATIVO</span></div>
@@ -772,8 +943,10 @@
       </div>
       <button class="pkg-link-btn" onclick="openAgent(this.closest('.pkg-card'))">Ver pacote →</button>
     </div>
+    </div>
 
     <!-- 09 -->
+    <div class="stack-item" style="z-index:9;top:120px">
     <div class="pkg-card pkg-09" onmousemove="spotlight(event,this)" data-link="trafego-pago.html" data-title="Tráfego Pago Avançado" data-icon="💸" data-color="#818cf8" data-steps='["Auditoria de conta Meta e Google","Estrutura de campanha por objetivo","Segmentação frio/lookalike/retargeting","Criação de hooks e criativos virais","Escala horizontal e vertical com ROAS"]'>
       <div class="pkg-card-spotlight"></div>
       <div class="pkg-header"><span class="pkg-num">✦ Pacote 09</span><span class="pkg-badge ativo">ATIVO</span></div>
@@ -787,8 +960,10 @@
       </div>
       <button class="pkg-link-btn" onclick="openAgent(this.closest('.pkg-card'))">Ver pacote →</button>
     </div>
+    </div>
 
     <!-- 10 -->
+    <div class="stack-item" style="z-index:10;top:128px">
     <div class="pkg-card pkg-10" onmousemove="spotlight(event,this)" data-link="lancamentos-perpetuo.html" data-title="Lançamentos & Perpétuo" data-icon="⚡" data-color="#e879f9" data-steps='["Cronograma de lançamento completo","Página de captura e aquecimento","Webinário com 12 slides de conversão","Sequência de e-mails carrinho aberto","Funil perpétuo com VSL automatizada"]'>
       <div class="pkg-card-spotlight"></div>
       <div class="pkg-header"><span class="pkg-num">✦ Pacote 10</span><span class="pkg-badge ativo">ATIVO</span></div>
@@ -802,8 +977,10 @@
       </div>
       <button class="pkg-link-btn" onclick="openAgent(this.closest('.pkg-card'))">Ver pacote →</button>
     </div>
+    </div>
 
     <!-- 11 -->
+    <div class="stack-item" style="z-index:11;top:136px">
     <div class="pkg-card pkg-11" onmousemove="spotlight(event,this)" data-link="coaching-transformacao.html" data-title="Coaching & Transformação" data-icon="🧠" data-color="#4ade80" data-steps='["Diagnóstico profundo do coachee","Plano de 90 dias com marcos","Sessão de 60-90min estruturada","Banco de 50+ perguntas poderosas","Acompanhamento e análise de progresso"]'>
       <div class="pkg-card-spotlight"></div>
       <div class="pkg-header"><span class="pkg-num">✦ Pacote 11</span><span class="pkg-badge ativo">ATIVO</span></div>
@@ -817,8 +994,10 @@
       </div>
       <button class="pkg-link-btn" onclick="openAgent(this.closest('.pkg-card'))">Ver pacote →</button>
     </div>
+    </div>
 
     <!-- 12 -->
+    <div class="stack-item" style="z-index:12;top:144px">
     <div class="pkg-card pkg-12" onmousemove="spotlight(event,this)" data-link="negocios-locais.html" data-title="Negócios Locais & PME" data-icon="🏪" data-color="#f87171" data-steps='["Auditoria de presença online local","Otimização Google Meu Negócio","Anúncios de raio no Meta e Google","Atendimento WhatsApp automatizado","Programa de fidelização e reativação"]'>
       <div class="pkg-card-spotlight"></div>
       <div class="pkg-header"><span class="pkg-num">✦ Pacote 12</span><span class="pkg-badge ativo">ATIVO</span></div>
@@ -832,8 +1011,10 @@
       </div>
       <button class="pkg-link-btn" onclick="openAgent(this.closest('.pkg-card'))">Ver pacote →</button>
     </div>
+    </div>
 
     <!-- 13 -->
+    <div class="stack-item" style="z-index:13;top:152px">
     <div class="pkg-card pkg-13" onmousemove="spotlight(event,this)" data-link="gestao-financeira.html" data-title="Gestão Financeira com IA" data-icon="💰" data-color="#38bdf8" data-steps='["Diagnóstico financeiro completo","Fluxo de caixa projetado 90 dias","DRE simplificado mensal","Análise de margem e precificação","Relatórios para decisão estratégica"]'>
       <div class="pkg-card-spotlight"></div>
       <div class="pkg-header"><span class="pkg-num">✦ Pacote 13</span><span class="pkg-badge ativo">ATIVO</span></div>
@@ -847,8 +1028,10 @@
       </div>
       <button class="pkg-link-btn" onclick="openAgent(this.closest('.pkg-card'))">Ver pacote →</button>
     </div>
+    </div>
 
     <!-- 14 -->
+    <div class="stack-item" style="z-index:14;top:160px">
     <div class="pkg-card pkg-14" onmousemove="spotlight(event,this)" data-link="squad-comercial.html" data-title="Squad Comercial & Time de Vendas" data-icon="👥" data-color="#a3e635" data-steps='["Playbook comercial documentado","Daily de vendas 15min estruturada","1:1 de coaching de vendedores","Script de objeções com 20+ respostas","Análise de pipeline e forecast"]'>
       <div class="pkg-card-spotlight"></div>
       <div class="pkg-header"><span class="pkg-num">✦ Pacote 14</span><span class="pkg-badge ativo">ATIVO</span></div>
@@ -862,8 +1045,10 @@
       </div>
       <button class="pkg-link-btn" onclick="openAgent(this.closest('.pkg-card'))">Ver pacote →</button>
     </div>
+    </div>
 
-  </div>
+  </div><!-- /scroll-track-wrapper -->
+  </div><!-- /stack-outer -->
 </section>
 
 <!-- ═══ ABOUT ═══ -->
@@ -1011,14 +1196,51 @@ function spotlight(e, card) {
 }
 
 /* ══════════════════════════════════════════
-   3. SCROLL CARDS — arrow navigation
+   3. SCROLL CARDS — vertical stack reveal
 ══════════════════════════════════════════ */
-function scrollCards(dir) {
-  const track = document.getElementById('scroll-track');
-  const card = track.querySelector('.pkg-card');
-  const cardWidth = card ? card.offsetWidth + 1 : 310;
-  track.scrollBy({ left: dir * cardWidth * 3, behavior: 'smooth' });
-}
+(function initStackScroll() {
+  const cards = document.querySelectorAll('.pkg-card');
+
+  // IntersectionObserver: fade+slide in each card as it enters viewport
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('card-visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  cards.forEach(card => {
+    // Start invisible
+    card.style.opacity = '0';
+    io.observe(card);
+  });
+
+  // Scale-down effect: as a card gets further from top, scale it slightly
+  function onScroll() {
+    cards.forEach((card, i) => {
+      const rect = card.getBoundingClientRect();
+      const navH = 56;
+      const distFromTop = rect.top - navH;
+      const cardH = rect.height;
+
+      // When this card is sticky and overlapped by the next card
+      if (distFromTop < 0 && distFromTop > -cardH) {
+        const progress = Math.abs(distFromTop) / cardH;
+        const scale = 1 - progress * 0.04;
+        const brightness = 1 - progress * 0.18;
+        card.style.transform = `scale(${scale})`;
+        card.style.filter = `brightness(${brightness})`;
+      } else if (distFromTop >= 0) {
+        card.style.transform = 'scale(1)';
+        card.style.filter = 'brightness(1)';
+      }
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
 
 /* ══════════════════════════════════════════
    4. AGENT PLAN MODAL — typewriter steps
